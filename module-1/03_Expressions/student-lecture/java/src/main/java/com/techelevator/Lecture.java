@@ -5,8 +5,8 @@ public class Lecture {
     1. This method is named returnNotOne and it returns an int. Change
     it so that it returns something other than a 1.
     */
-    public int returnNotOne() {
-        return 1;
+    public int returnNotOne() { // my name is returnNotOne and I will return an int and receive no parameters
+        return 2;
     }
 
     /*
@@ -14,29 +14,29 @@ public class Lecture {
     it so that it returns something other than a 0.5.
     */
     public double returnNotHalf() {
-        return 0.5;
+        return 0.4;
     }
 
     /*
     3. This method needs to return a String. Fix it to return a valid String.
     */
     public String returnName() {
-        return null;
+        return "some words";
     }
 
     /*
     4. This method currently returns an int. Change it so that it returns a double.
     */
-    public int returnDoubleOfTwo() {
-        return 2;
+    public double returnDoubleOfTwo() {
+        return 2;		// int value is OK when returning a double because an int can be converted to a double
     }
 
     /*
     5. This method should return the language that you're learning. Change
     it so that it does that.
     */
-    public boolean returnNameOfLanguage() {
-        return false;
+    public String returnNameOfLanguage() {
+        return "Java";
     }
 
     /*
@@ -45,7 +45,7 @@ public class Lecture {
     */
     public boolean returnTrueFromIf() {
         if (true) {
-            return false;
+            return true;
         }
 
         return false;
@@ -57,7 +57,7 @@ public class Lecture {
     */
     public boolean returnTrueWhenOneEqualsOne() {
         if (1 == 1) {
-            return false;
+            return true;
         }
 
         return false;
@@ -69,7 +69,7 @@ public class Lecture {
     */
     public boolean returnTrueWhenGreaterThanFive(int number) {
         if (number > 5) {
-
+        	return true;
         } else {
 
         }
