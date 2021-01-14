@@ -42,13 +42,31 @@ public class Lecture {
     /*
     6. This method uses an if statement to define what to return. Have it
     return true if the if statement passes.
+    
+    format-1 of if: if (logical-expression) {
+    					statements to be executed if logical-expression is true
+    				}
+    					
+    format 2 of if: if (logical-expression) {
+    					statements to be executed if logical-expression is true
+    				}
+    				else {
+    					statements to be executed if logical-expression is false
+    				}
+    				
+    if statements provide a way to perform conditional processing
+    
+    logical-expression results in a true or false
+    
+    logical-expression uses the conditional operators (see chart)
+    					
     */
-    public boolean returnTrueFromIf() {
+    public boolean returnTrueFromIf() {		// change return false to return true
         if (true) {
-            return true;
+            return true;					// return terminates function immediately
         }
 
-        return false;
+        return false;						// only get to this statement when the if statement is false
     }
 
     /*
@@ -70,10 +88,11 @@ public class Lecture {
     public boolean returnTrueWhenGreaterThanFive(int number) {
         if (number > 5) {
         	return true;
-        } else {
+        } 
+        	return false;
+// alternate solution
+//		return number > 5; // no if is necessary if all you are doing is returnng the result of the logical-expression
 
-        }
-        return false;
     }
 
     /*
@@ -81,7 +100,7 @@ public class Lecture {
     How can we rewrite exercise 8 to have only one line of code?
     */
     public boolean returnTrueWhenGreaterThanFiveInOneLine(int number) {
-        return false; // What can we put here that returns a boolean that we want?
+        return number>5; // What can we put here that returns a boolean that we want?
     }
 
     /*
@@ -92,13 +111,13 @@ public class Lecture {
     */
     public int returnNumberAfterAddThreeAndAddFive(int number, boolean addThree, boolean addFive) {
         if (addThree) {
-            number = number + 1;
+            number = number + 3;
         }
 
         // We can't use an else here. They could both be true, so we have to check each one.
 
         if (addFive) {
-            number += 1;
+            number += 5;
         }
 
         return number;
@@ -108,6 +127,9 @@ public class Lecture {
     11. Write an if statement that returns "Fizz" if the parameter is 3 and returns an empty String for anything else.
     */
     public String returnFizzIfThree(int number) {
+    	if (number == 3) {
+    		return "Fizz";
+    	}
         return "";
     }
 
@@ -115,13 +137,18 @@ public class Lecture {
     12. Now write the above using the Ternary operator ?:. If you're not sure what this is, you can Google it.
     */
     public String returnFizzIfThreeUsingTernary(int number) {
-        return "";
+    	return number == 3 ? "Fizz" : ""; // this does the same thing as #11
     }
 
     /*
     13. Write an if/else statement that returns "Fizz" if the parameter is 3, "Buzz" if the parameter is 5 and an empty String for anything else.
     */
     public String returnFizzOrBuzzOrNothing(int number) {
+    	if (number == 3) {
+    		return "Fizz";
+    	} else if (number == 5) {
+    		return "Buzz";
+    	}
         return "";
     }
 
