@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.techelevator</groupId>
-	<artifactId>m01d07-collections-part-1-tutorial</artifactId>
+	<artifactId>07-collections-part-1-tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
