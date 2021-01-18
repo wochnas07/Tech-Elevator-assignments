@@ -238,10 +238,20 @@ public class Exercises {
 	 max1020(11, 9) → 11
 	 */
 	public int max1020(int a, int b) {
-		if ((a >= 10 && a <= 20) && (b < 20) && (a > b)) {
+		boolean aInRange = (a >= 10 && a <= 20);
+		boolean bInRange = (b >= 10 && b <= 20);
+		
+		if (aInRange && !bInRange) {
 			return a;
-		} else if ((b >= 10 && b <= 20) && (a < 20 ) && (b > a)) {
+		} else if (!aInRange && bInRange){
 			return b;
+		}
+		if (aInRange && bInRange) {
+			if (a > b) {
+				return a;
+			} else {
+				return b;
+			}
 		}
 		return 0;
 	}

@@ -9,7 +9,14 @@ public class Exercises {
 	 firstLast6([6, 1, 2, 3]) → true
 	 firstLast6([13, 6, 1, 2, 3]) → false
 	 */
-	public boolean firstLast6(int[] nums) {
+	public boolean firstLast6(int[] nums) {		// receives an array of ints called nums
+		// look at the first and last element in the array and if its 6 return true, otherwise return false
+		// first element is at index 0
+		// last element is at index array.length - 1
+		
+		if (nums[0] ==6 || nums[nums.length-1] == 6) {
+			return true;
+		}
 		return false;
 	}
 
@@ -21,6 +28,15 @@ public class Exercises {
 	 sameFirstLast([1, 2, 1]) → true
 	 */
 	public boolean sameFirstLast(int[] nums) {
+		
+		if (nums.length < 1) {
+			return false;
+		}
+		
+		if (nums[0] == nums[nums.length-1]) {
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -29,7 +45,11 @@ public class Exercises {
 	 makePi() → [3, 1, 4]
 	 */
 	public int[] makePi() {
-		return new int[] {};
+		
+		int[] result = {3, 1, 4};
+		
+		return result;
+		
 	}
 
 	/*
@@ -40,6 +60,9 @@ public class Exercises {
 	 commonEnd([1, 2, 3], [1, 3]) → true
 	 */
 	public boolean commonEnd(int[] a, int[] b) {
+		if (a[0] == b[0] || a[a.length - 1] == b[b.length - 1]) {
+			return true;
+		}
 		return false;
 	}
 
@@ -50,7 +73,16 @@ public class Exercises {
 	 sum3([7, 0, 0]) → 7
 	 */
 	public int sum3(int[] nums) {
-		return 0;
+		// sum all numbers in array and return sum
+		// go through the array one element at a time and add it to a sum
+		// define a variable to hold the sum so i can return it
+		int sum = 0;		// hold the sum of all the numbers
+		
+		for (int i=0; i < nums.length; i++) {
+			sum = sum + nums[i];
+		}
+		
+		return sum;
 	}
 
 	/*
@@ -61,7 +93,8 @@ public class Exercises {
 	 rotateLeft3([7, 0, 0]) → [0, 0, 7]
 	 */
 	public int[] rotateLeft3(int[] nums) {
-		return new int[] {};
+		int[] rotated = {nums[1], nums[2], nums[0]};
+		return rotated;
 	}
 
 	/*
@@ -72,7 +105,8 @@ public class Exercises {
 	 reverse3([7, 0, 0]) → [0, 0, 7]
 	 */
 	public int[] reverse3(int[] nums) {
-		return new int[] {};
+		int[] reversed = {nums[2], nums[1], nums[0]};
+		return reversed;
 	}
 
 	/*
@@ -83,6 +117,7 @@ public class Exercises {
 	 maxEnd3([2, 11, 3]) → [3, 3, 3]
 	 */
 	public int[] maxEnd3(int[] nums) {
+		
 		return new int[] {};
 	}
 
@@ -105,7 +140,8 @@ public class Exercises {
 	 middleWay([5, 2, 9], [1, 4, 5]) → [2, 4]
 	 */
 	public int[] middleWay(int[] a, int[] b) {
-		return new int[] {};
+		int[] middle = {a[1], b[1]};
+		return middle;
 	}
 
 	/*
