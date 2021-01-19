@@ -25,17 +25,19 @@ public class CommandLineSampleProgram {
 		System.out.println("You entered the line: " + aLine); // displays the line entered by the user
 		
 		System.out.println("Please enter a whole number: ");
-		aLine = userInput.nextLine(); 				// Get a line from the keyboard
-		System.out.println("You entered the number: "+ aLine);
+		int aNumber = userInput.nextInt();			// Get an int from the keyboard
+		userInput.nextLine(); 	// remove the enter left in the keyboard buffer by nextInt
+								// so subsequent keyboard requests all the user to type input for the program
+		System.out.println("You entered the number: "+ aNumber);
 		
 		// We want to divide what the user entered by 2 to get half the value
 		// We stored what they entered as a String which cannot be used in arithmetic
 		// We need to convert the value in the String to a numeric value so we can do arithmetic
 		// We can use the Integer.parseInt() or Double.parseDouble() to convert a String to a numeric
 		
-		int theNumber = Integer.parseInt(aLine); // Convert what is in aLine to an int and store it in theNumber
+		// int theNumber = Integer.parseInt(aLine); // Convert what is in aLine to an int and store it in theNumber
 		
-		System.out.println("Half of that number is: " + theNumber/2);
+		System.out.println("Half of that number is: " + aNumber/2);
 		
 		
 		// Get a series of values from a user and determine the sum and average
@@ -77,6 +79,12 @@ public class CommandLineSampleProgram {
 }
 
 
+// To avoid issues when reading the keyboard:
+//		Use nextLine() to read the input as a String
+//		Convert the String to numeric value if needed using Integer.parseInt() or Double.parseDouble(), etc
+// 		-OR-
+//		if you use nextInt(), nextDouble(), or any other next with a numeric type,
+// 		do a nextLine() immediately afterwards to clear the keyboard buffer of the enter key that was left in it.
 
 
 
