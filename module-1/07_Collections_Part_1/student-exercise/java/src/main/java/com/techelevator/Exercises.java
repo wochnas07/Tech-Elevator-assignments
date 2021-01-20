@@ -16,7 +16,15 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		ArrayList<String> result = new ArrayList();		// what is being returned from the function
+		
+		// go through the array that is passed in, one element at a time
+		// Assign each element in the array to the ArrayList
+		
+		for(int i=0; i < stringArray.length; i++) {
+			result.add(stringArray[i]); // add the current element to the ArrayList
+		}
+		return result;		// return the result
 	}
 
 	/*
