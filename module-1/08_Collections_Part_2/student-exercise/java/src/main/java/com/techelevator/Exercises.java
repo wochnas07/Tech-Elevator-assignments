@@ -34,7 +34,40 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		String groupName = ""; 		// hold the value returned
+		
+		if (animalName == null) {	// if animal name given is null
+			return "unknown";		// return "unknown"
+		}
+		// Set up a Map to associate the animal name to the group name
+		// key - animal name in lower case since we want the search to be case insensitive
+		// value - group name
+		
+		Map<String, String> animalGroups = new HashMap();	// key - String, value - String
+		
+		// Add entries to Map for the animal names given
+		
+		animalGroups.put("rhino", "Crash");
+		animalGroups.put("giraffe", "Tower");
+		animalGroups.put("elephant", "Herd");
+		animalGroups.put("lion", "Pride");
+		animalGroups.put("crow", "Murder");
+		animalGroups.put("pigeon", "Kit");
+		animalGroups.put("flamingo", "Pat");
+		animalGroups.put("deer", "Herd");
+		animalGroups.put("dog", "Pack");
+		animalGroups.put("crocodile", "Float");
+
+		// Look to see if the animal name given is in the Map - case insensitive
+		
+		groupName = animalGroups.get(animalName.toLowerCase());		// convert what is given to lowercase for the search
+		
+		// Check to be sure the animal was in the Map, if not set the groupName to "unknown"
+		if (groupName == null) {	// .get() returns null if the key is not in the Map
+			groupName = "unknown";
+		}
+		
+		return groupName;
 	}
 
 	/*

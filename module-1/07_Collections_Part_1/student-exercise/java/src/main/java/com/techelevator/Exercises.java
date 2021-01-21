@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -34,7 +35,13 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] result = new String[(stringList.size())];
+		
+		for(int i=0; i < result.length; i++) {
+			result[i] = stringList.remove(0);
+			System.out.println(result[i]);
+		}	
+		return result;
 	}
 
 	/*
@@ -45,7 +52,14 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> no4LetterWords = new ArrayList<String>();
+		
+		for (String words : stringArray) {
+			if (words.length() != 4) {
+				no4LetterWords.add(words);
+			}
+		}
+		return no4LetterWords;
 	}
 
 	/*
@@ -55,7 +69,12 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> result = new ArrayList();
+			for (Integer i : intArray) {
+				double intsDivided = i * 0.5;
+				result.add(intsDivided);
+			}
+		return result;
 	}
 
 	/*
@@ -65,7 +84,7 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		return Collections.max(integerList);
 	}
 
 	/*
@@ -75,7 +94,13 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> result = new ArrayList();
+		for (Integer i : integerArray) {
+			if (i % 2 != 0) {
+				result.add(i);
+			}
+		}
+		return result;
 	}
 
 	/*
@@ -114,7 +139,47 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		// Define what needs to be returned
+		List<Integer> newList = new ArrayList();
+		
+		// Code the "happy path" first - the lists are the same size
+		// Code for the "edge case" where lists are different lengths
+		//		Interleave for the length of the shorter list
+		// 				We need to determine what is the shorter one and it's length
+		boolean firstShorter = listOne.size() <listTwo.size(); 		// figure out if first list is shorter
+		int sizeOfShorter = 0;
+		
+		if (firstShorter) {
+			sizeOfShorter = listOne.size();
+		} else {
+			sizeOfShorter = listTwo.size();
+		}
+		// sizeOfShorter contains the number of elements in the shorter list
+		
+		
+		// Loop through all the elements in both lists one at a time for the length of the shorter list
+		// Add the current element in listOne to the newList then add current elem in listTwo to the newList
+		for (int i=0; i < sizeOfShorter; i++) {	// Loop for the length of the shorter
+			newList.add(listOne.get(i));			// Add the current element in listOne to newList
+			newList.add(listTwo.get(i));			// Add the current element in listTwo to newList
+			
+		}
+		// add the remaining elements from the longer list to the new list
+		
+		// We start adding elements from the longer list from the element # that matches the length of the shorter
+		if (firstShorter) {		// if the first was shorter - add the remaining elements from the second
+			for (int i = sizeOfShorter; i < listTwo.size(); i++) {	// loop from where we left off to the end of the second list
+				newList.add(listTwo.get(i));		// Add the current element to the new list
+				
+			}
+		}
+		else { 		// if the second one was shorter - add the remaining element from the first
+			for (int i = sizeOfShorter; i < listOne.size(); i++) {	// loop from where we left off to the end of the first list
+				newList.add(listOne.get(i));		// Add the current element to the new list
+		}
+		return newList;
 	}
-
+		return newList;
+	}
 }
+
