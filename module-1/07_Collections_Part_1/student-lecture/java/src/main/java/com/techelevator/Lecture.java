@@ -162,7 +162,7 @@ public class Lecture {
 
 		System.out.println("####################");
 		System.out.println("       FOREACH");
-		System.out.println("####################");
+	System.out.println("####################");
 		System.out.println();
 
 		// for-each loop is shorthand for-loop when you need to go through the entire array/ArrayList
