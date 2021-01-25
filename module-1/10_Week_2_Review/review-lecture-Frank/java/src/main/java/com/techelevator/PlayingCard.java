@@ -39,8 +39,38 @@ public class PlayingCard {
 	 * 
 	 *      Integer.parseInt()     -   Integer is the class name; parseInt() is the method
 	 ********************************************************************************************/
+	/*********************************************************************************************
+	 * members of a class are assigned access modifiers, which indicate who or what has access to member
+	 * 
+	 * public - anyone can access the member (data or method)
+	 * private - only members of the class can access the member
+	 * 
+	 * Usually data members are private and methods are public
+	 * 
+	 * Encapsulation says we protect the data from outside the class access
+	 * We provide methods for those outside the class to access our data - we control access to our data
+	 * 
+	 *********************************************************************************************/
+	/**********************************************************************************************
+	 * final tells Java the value in the variable cannot be changed once it is set
+	 * 
+	 * Use final to define constants in a program
+	 * 
+	 * Constants are data values that don't change
+	 * 
+	 * Constants are typically used if place of literals to make code easier to read or maintain
+	 * 
+	 * Java naming conventions want constant name to be in ALL UPPERCASE
+	 *********************************************************************************************/
+	/**********************************************************************************************
+	 * The keyword this represents the current object
+	 * 
+	 * This is the object to the left of the . when a method is invoked: object.method(parameters)
+	 * 
+	 * In a ctor or other methods, it is ONLY REQUIRED when a PARAMETER NAME is the SAME NAME AS DATA MEMBER
+	 */
 	//********************************************************************************************
-	// Class member constants 
+	// Class member constants - attributes of an class object
 	//********************************************************************************************
 	private final int MINVALUE    = 0;             // Minimum valid card value 
 	private final int MAXVALUE    = 13;            // Maximum valid card value
@@ -59,15 +89,19 @@ public class PlayingCard {
 //********************************************************************************************
 // Constructors for the class
 //
+// a Constructor is special method in a class that initializes new objects
+//
 // Constructors have the same name as the class have no return type - NOT EVEN void	
 //
 // Constructors are frequently overloaded (same name, same behavior,  different parameters)
 //              overloading ctors allows users flexibility in defining objects of the class
+//
+// Provide constructors for each scenario you envision users fill instantiate objects of the class
 //*********************************************************************************************	
 	/**
 	 * default constructor - has no parameters
 	 */
-	public PlayingCard() {  
+	public PlayingCard() {  		// Used when the user wants an object with default values
 		value   = DEFAULT_VALUE;
 		suit    = "Clubs";
 		showing = false;
@@ -77,17 +111,21 @@ public class PlayingCard {
 	/**
 	 * 4-arg constructor
 	 */
+	// Used when the user wants to create an object with specific attributes - value, suit, color, showing
+	//		All non-specified attributes are set to default values
 	public PlayingCard(int value, String suit, String color, boolean showing) {
-		setValue(value);          // Use member method to set value in case value passed is invalid
-		this.suit    = suit;
-		this.showing = showing;
-		determineColor();         // Use class member method to set the color based on the suit
-		                          //     ignore color sent is as a parameter by user
-		shape="Rectangle";
+		setValue(value);          	// Use member method to set value in case value passed is invalid
+		this.suit    = suit;		// this. is required because the parameter name is the same as data member
+		this.showing = showing;		// this. is required because the parameter name is the same as data member
+		determineColor();         	// Use class member method to set the color based on the suit
+		                          	//     ignore color sent is as a parameter by user
+		shape="Rectangle";			// this. is not required because we are not using a varibale with the same name
 	}
 	/**
 	 * 2-arg constructor
 	 */
+	// Used when the user wants to create an object with specific attributes - value, suit
+	//		All non-specified attributes are set to default values
 		public PlayingCard(int value, String suit) {
 			setValue(value);          // Use member method to set value in case value passed is invalid
 			this.suit       = suit;
@@ -140,9 +178,16 @@ public class PlayingCard {
 	 * @param suit is the value to set PlayingCard suit attribute
 	 * @return void
 	 */
-	public void setSuit(String suit) {
+	// a method signature - identifies the basic characteristics of a method
+	//						characteristics of a method:
+	//							return-type of what it returns - void means it returns nothing
+	//							name - what is used to invoke/run the method
+	//							parameters it receives (data-type name)
+//	access return
+//	type	type  name	(parameters)
+	public void setSuit(String suit) { 	// Hi, I'm setSuit and I return nothing(void) and receive a String I call suit
 		this.suit = suit;
-	}
+	}	// no return statement is required because this is a void method
 	
 	/**
 	 * @param value is the the value to set PlayingCard value attribute
@@ -185,8 +230,8 @@ public class PlayingCard {
 	 */
 	
 	public boolean isFaceCard() {
-		return (getValue() >= 11);  // use class method to retrieve class data
-	}
+		return (getValue() >= 11);  // use class method to retrieve class data instead of just the name of data
+	}								// in case the class does something to the data 
 	/**
 	 * Flip card from showing to not showing
 	 * @return void
@@ -232,11 +277,44 @@ public class PlayingCard {
 	 * @return String containing the attributes of the object
 	 */
 	
+	// The default behavior of the Object class to String() is not desirable
+	// so we override the Object toString() with our own for this class
+	
 	@Override             // Ask the compiler to verify this is a proper override
 	public String toString() {
 		return "PlayingCard [suit=" + suit + ", value=" + value + ", color=" + color + ", showing=" + showing
 				            + "shape=" + shape +"]";
 	}
+	// We need to override the object class .equals method since the Object class has no idea what it means
+	//	for one PlayingCard to be equal to another PlayingCard since WE define PlayingCard Class not Java
+	
+	
+	//					  data-type		name
+	public boolean equals(PlayingCard otherCard) {
+	// Since this is our class, we decide what makes a PlayingCard equal to another PlayingCard
+	// A PlayingCard is equal to another playing card if value and suit are the same
+	//
+	// To use this method one would aPlayingCardObject.equals(aPlayingCardObject)
+	// we coded card4.equals(card5)
+	//			this         otherCard (parameter to the method)
+	//
+	// this. always references/means the object to the left of the . that invokes the method
+	// this means the current object - object used to invoke the method
+		
+		if ((this.value == otherCard.value) && (this.suit.equals(otherCard.suit))) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 }
+
+
+
+
+
+
+
 
 
