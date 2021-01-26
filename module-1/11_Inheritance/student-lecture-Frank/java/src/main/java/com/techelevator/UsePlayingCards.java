@@ -1,7 +1,10 @@
 package com.techelevator;
 
 public class UsePlayingCards {
-
+	
+//	An application program to instantiate and use PlayingCard objects
+//			we know because it has a "main"
+	
 	public static void main(String[] args) {
 		System.out.println("\nInstantiating aUSACard as an ace of Hearts");
 		AmericanPlayingCard aUSACard  = new AmericanPlayingCard(1, "HEARTS");  // Instantiate an Ace of Hearts
@@ -24,6 +27,16 @@ public class UsePlayingCards {
 		else {
 			System.out.println("They are NOT equal");
 		}
+		
+		ItalianCard guido = new ItalianCard();		// Instantiate an ItalianCard
+		
+		System.out.println("Guido is: " + guido);
+		
+		guido.setValue(6);
+		
+		System.out.println("Guido is: " + guido);
+		
+		
 	}
 
 }

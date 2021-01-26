@@ -14,11 +14,11 @@ public class PlayingCard {
 	/***************************************************************************************
 	 * 3-arg constructor when user uses value, suit and color to instantiate 
 	 ***************************************************************************************/
-	
+	//	making the parameters the same name as the data members requires this. to be coded when reference data members
 	public PlayingCard(int value, String suit, String color) {
-		this.value = value;
-		this.suit  = suit;
-		this.color = color;
+		this.value = value;		//	this. is required to indicate
+		this.suit  = suit;		//		the current object
+		this.color = color;		//			because the parameters have the same names as data members
 	}
 
 	/***************************************************************************************
@@ -60,6 +60,7 @@ public class PlayingCard {
 	 ***************************************************************************************/
 	@Override  // for the Object class: boolean equals(Object) 
 	public boolean equals(Object obj) {    // Note: Parameter is a generic Object class because this is an override
+	//	this references the current object
 		if (this == obj) {                 // If PlayingCard is being compared to itself...
 			return true;                   //      it must be equal - return false
 		}
