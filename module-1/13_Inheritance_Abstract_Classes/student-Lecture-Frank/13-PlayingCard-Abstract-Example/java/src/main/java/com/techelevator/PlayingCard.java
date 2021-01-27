@@ -61,8 +61,6 @@ public class PlayingCard {
 		return true;
 	}
 
-	public void showCard() {   // Eclipse generated method - does nothing
-		// TODO Auto-generated method stub
+	public void showCard() {}  // Required for Polymorphism - does nothing
 		
-	}
 }
