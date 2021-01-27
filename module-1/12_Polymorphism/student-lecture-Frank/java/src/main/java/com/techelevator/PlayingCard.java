@@ -31,6 +31,13 @@ public class PlayingCard {
 	public void setSuit(String suit) {
 		this.suit = suit;
 	}
+	
+	public void showCard() {	// method required for Polymorphism even though we dont need it
+								// because we don't intend to instantiate PlayingCard
+								// all the sub classes have their own showCard() method
+		System.out.println(this.toString());
+	}
+	
 	@Override
 	public String toString() {
 		return "PlayingCard [value=" + value + ", color=" + color + ", suit=" + suit + ", getValue()=" + getValue()

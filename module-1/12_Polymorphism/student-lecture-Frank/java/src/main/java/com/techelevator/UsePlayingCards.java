@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.ArrayList;
+
 public class UsePlayingCards {
 
 	public static void main(String[] args) {
@@ -47,6 +49,58 @@ public class UsePlayingCards {
 		SwissPlayingCard aSwissCard4 = new SwissPlayingCard(11, "JASON");
 		System.out.println("anSwissCard4 is :");
 		aSwissCard4.showCard();		
-	}
+		
+		//****************************************************************************************************************************
+		// Start of the Polymorphism examples
+		//****************************************************************************************************************************
+		
+		System.out.println("\n--------- Polymorphism examples start here --------\n");
+		
+		PlayingCard aCard = null;	// Define a super class object that is empty
+		
+		aCard = aUSACard;	// Assign a sub class object to a super class variable
+							// Normally you cannot assign an object of one class to an object of another class
+							// Inheritance let you assign a subclass object to a super call variable
+							//		so you can take advantage of Polymorphism
+		
+//	PlayingCard.PlayCardMethod() - the compiler thinks its running the method that belongs to the class of the object
+		aCard.showCard();	// Use the super class object to run a common method in the Inheritance hierarchy
+							// All subclasses have a showCard() method - Polymorphism will decide which one to run
+							// In this case, it suns the AmericanPlayingCard showCard() method
+		
+		aCard = aSwissCard1;	// Assign a subclass to a super class object	
+		aCard.showCard();		// use the super class to methods - run the SwissCard showCard() 
+		
+		aCard = anItalianCard1;
+		aCard.showCard(); 		// run the ItalianCard showCard()
+		
+		
+		System.out.println("\n------- Polymorphism examples using an ArrayList --------\n");
+		
+		// Define a Collections class object or a regular array with the data type of the super class
+		// You now have a group of super class objects
+		ArrayList<PlayingCard> cardList = new ArrayList();
+		
+		// Add subclass objects to the ArrayList of super class objects
+		cardList.add(aSwissCard1);		// add a sub class object
+		cardList.add(anItalianCard1);
+		cardList.add(aUSACard);
+		cardList.add(aUSACard2);
+		cardList.add(aSwissCard2);
+		
+		// Loop through the ArrayList displaying the cards using the showCard() method
+		for(PlayingCard theCard : cardList) {	// use the super class for the for-each variable
+			theCard.showCard();					// use the for-each variable to invoke the method
+		}
+		// Because of Polymorphism we don't need to know or care what type of object is in the for-loop 
+		//			variable each time through the loop
+		
+		
+	}	// end of main() method
 
-}
+}	// end of the application program class
+
+
+
+
+
