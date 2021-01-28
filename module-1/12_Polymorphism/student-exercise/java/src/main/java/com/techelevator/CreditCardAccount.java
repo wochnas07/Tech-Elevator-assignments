@@ -2,6 +2,8 @@ package com.techelevator;
 
 /**
  * CreditCardAccount
+ * 
+ * CreditCardAccount is a type of Accountable class
  */
 public class CreditCardAccount implements Accountable {
 	
@@ -40,7 +42,7 @@ public class CreditCardAccount implements Accountable {
 		return debt;
 	}
 
-    public int getBalance() {
+    public int getBalance() {	// required due to implementing the Accountable interface
     	//***************************************************************
     	// This should return the negative of the debt data member
     	//***************************************************************

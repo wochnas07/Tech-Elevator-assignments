@@ -37,7 +37,10 @@ public class PlayingCard {
 				+ ", getColor()=" + getColor() + ", getSuit()=" + getSuit() + "]";
 	}
 	
+	// a subclass may override a super class if it wants to change behavior of the super class method
+	
 	@Override   // Ask compiler to verify this is a proper Override - same name, same parameters, same return-type
+				// 
 	public boolean equals(Object obj) {  // Receive any type of Object
 		if (this == obj) {  // If compare a PlayingCard to itself
 			return true;

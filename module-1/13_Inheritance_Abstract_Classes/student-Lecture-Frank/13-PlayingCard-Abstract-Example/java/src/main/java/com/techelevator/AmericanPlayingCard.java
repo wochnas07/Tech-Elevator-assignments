@@ -14,6 +14,8 @@ public class AmericanPlayingCard extends PlayingCard{
 	private static Map<String,  String> suitMap  = new HashMap<String , String>();  
 	private static Map<Integer, String> valueMap = new TreeMap<Integer, String>();
 	
+	// by making the method that calls initializeMaps() static and anonymous
+	//	it will be run automatically when a process that instantiates this class is run
 			static {             // static method to initialize maps before are ever used
 		       initializeMaps();
 	        }

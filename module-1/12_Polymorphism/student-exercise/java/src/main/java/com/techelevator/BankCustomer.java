@@ -11,6 +11,7 @@ public class BankCustomer {
 	private String			name;
 	private String			address;
 	private String			phoneNumber;
+	private Accountable[]	accounts;
 
     public String getName() {
 		return name;
@@ -36,25 +37,28 @@ public class BankCustomer {
 		this.phoneNumber = phoneNumber;
 	}
 
-	private List<Accountable> accounts = new ArrayList<>();   // List of Accountable objects
+	private List<Accountable> accountArray = new ArrayList<>();   // List of Accountable objects
     					// convert ArrayList to array
     					// create getter for accounts to return ArrayList
     
     public Accountable[] getAccounts() {
-    	return null;	// replace null with the normal array containing Accounts
+    	return accountArray.toArray(new Accountable[accountArray.size()]);	// replace null with the normal array containing Accounts
     }
     
-    public addAccount(Accountable newAccount) // didnt finish this line? not sure
-
+    public void addAccount(Accountable newAccount) {
+    	accountArray.add(newAccount);
+    	
+    }
     
+    public boolean isVip() {
+    	int totalMoney = 0;
+    	for (Accountable i : accountArray) {
+    	totalMoney = (totalMoney + i.getBalance());
+    	}
+    	if (totalMoney >= 25000) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 }
-
-//the transferTo method takes the destination-account and amount as parameters
-//
-//		aBankAccountObject (destination-account, amount)
-//
-//		transfer the amount from the BankAccountObject in the front of the . to the destination
-//
-//		jasonAcct.transferTo(frankAcct, 1000) - this will transfer $1000 from jasonAcct to frankAcct
-//												return the balance in jasonAcct - sending account
- 
