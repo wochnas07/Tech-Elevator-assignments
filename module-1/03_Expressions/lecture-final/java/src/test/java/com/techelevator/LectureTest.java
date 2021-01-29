@@ -9,17 +9,23 @@ import static org.junit.Assert.*;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LectureTest {
-
+	// Instantiate the lecture code stored in class Lecture
     private Lecture exercises = new Lecture();
 
     @Test
-    public void testReturnNotOne() {
-        assertNotEquals("Value returned shouldn't be one", 1, exercises.returnNotOne());
+    public void testReturnNotOne() {	// testing the returnNotOne() method in the lecture code
+        //				message-if-test-fails,		value-to-test, method-to-test
+    	assertNotEquals("Value returned shouldn't be one", 1, exercises.returnNotOne());
+    // check to see if the value returns from the returnNotOne() method is NotEqual 1
     }
-
+   
     @Test
-    public void testReturnNotHalf() {
-        assertNotEquals("Value returned shouldn't be 0.5", 0.5, exercises.returnNotHalf(), 0.001);
+    public void testReturnNotHalf() {	// testing the return.NotHalf() method from the lecture code
+        // When checking double values for equals/not equals a fudge-factor is specified due to the imprecision of doubles
+    	//														.44499999 instead .45
+    	//					fudge-factor - consider the double values equal if the difference is not more fudge-factor
+    	//					message-f-test-fails,		expected, method to test,		fudge-factor
+    	assertNotEquals("Value returned shouldn't be 0.5", 0.5, exercises.returnNotHalf(), 0.001);
     }
 
     @Test

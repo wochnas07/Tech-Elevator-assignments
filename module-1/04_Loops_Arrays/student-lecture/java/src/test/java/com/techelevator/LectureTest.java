@@ -11,11 +11,13 @@ public class LectureTest {
 
     @Test
     public void testReturnArray() {
+    	// Since the method we are testing returns an int[] - use assertArrayEquals to check the result
         assertArrayEquals(new int[] { 80, 8080, 443 }, exercises.returnArray());
     }
 
     @Test
     public void testReturnFirstElement() {
+    	// Since the method were testing returns an int, we us assertEquals to test the result
         assertEquals("That's not the first element in that array", 80, exercises.returnFirstElement());
     }
 
@@ -26,8 +28,10 @@ public class LectureTest {
 
     @Test
     public void testReturnFirstElementOfParam() {
+    	// The method we are testing returns an int, so we use assertEquals to check it
+    	// the method receives a parameter which is an int[], we need to pass an int[] to it when we test
         assertEquals("That's not the first element from {5, 10, 15}", 5,
-                exercises.returnFirstElementOfParam(new int[] { 5, 10, 15 }));
+                exercises.returnFirstElementOfParam(new int[] { 5, 10, 15 }));	// combined Arrange, Act, Assert into one statement
         assertEquals("That's not the first element from {10, 20, 30, 40, 50}", 10,
                 exercises.returnFirstElementOfParam(new int[] { 10, 20, 30, 40, 50 }));
     }
@@ -52,6 +56,7 @@ public class LectureTest {
 
     @Test
     public void testReturnVariableInScope() {
+    	// Because the method returns a double, we need a fudge-factor to test for equals
         assertEquals("Not that one, try again.", 5.0, exercises.returnInScopeVariable(), 0.001);
     }
 

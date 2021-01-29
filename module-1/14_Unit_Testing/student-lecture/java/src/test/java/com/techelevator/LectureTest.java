@@ -24,14 +24,16 @@ public class LectureTest {
 	 * It is intended to be used when there is a repetitive setup (i.e. "Arrange") task that is
 	 * performed by several tests */
 	@Before
-	public void setup() {
-		System.out.println("setup");
+	// Do this before every unit test- any setup required for each test- define and init vars, gather some data
+	public void setup() {		// method name doesn't matter as long as its descriptive
+		System.out.println("setup");	// displays from a test - not usually done- this is here for illustration purposes
 	}
 
 	/* If a method is annotated with @After, it will be executed immediately after every test.
 	 * It is intended to be used when there is a repetitive cleanup task that is performed by
 	 * several tests (e.g. deleting temp files, rolling back database transactions, etc) */
 	@After
+	// Do this after every test - any take down processing to be done after each test
 	public void teardown() {
 		System.out.println("teardown");
 	}
@@ -57,16 +59,18 @@ public class LectureTest {
 	 *     - return void
 	 *     - take no arguments
 	 */
-	@Test
+	@Test	// Identifies until test to JUnit - if omitted, JUnit doesn't see the test
 	public void length_returns_the_number_of_characters_in_a_String() {
 		System.out.println("length_returns_the_number_of_characters_in_a_String"); // FOR DEMONSTRATION PURPOSES ONLY, don't do this in your own tests
 
 		/* The assertEquals method validates that two values are equal and
 		 * fails the test if they are not equal */
 
-		String theString = "Java"; // Arrange
-		int length = theString.length(); // Act
-		Assert.assertEquals(4, length); // Assert
+		String theString = "Java"; // Arrange - setup/define/initialize test data
+		int length = theString.length(); // Act - perform the process you want to test using the test data you arranged
+		// Assert that the value in length equals 4 - issue a default error message
+		// assertEquals (expected, actual)
+		Assert.assertEquals(4, length); // Assert - check to see if the process did what was expected
 	}
 
 	@Test
@@ -76,8 +80,8 @@ public class LectureTest {
 		/* The assertTrue method validates that the boolean value provided as an arugment
 		 * is true and fails the test if it is false. */
 
-		String theString = "Hello World!"; // Arrange
-		boolean startsWithHello = theString.startsWith("Hello"); // Act
+		String theString = "Hello World!"; 							// Arrange - set up the test data
+		boolean startsWithHello = theString.startsWith("Hello"); 	// Act - perform the process to test
 
 		/* every assert method allows the first parameter to be a String that contains a message
 		 * that should be displayed when the assertion fails
