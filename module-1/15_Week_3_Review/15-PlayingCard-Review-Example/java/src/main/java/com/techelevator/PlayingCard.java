@@ -95,8 +95,25 @@ public class PlayingCard {
 	 * setter methods
 	 ***************************************************************************************************/
 	public CardValue setValue(int ivalue) {  // Set the CardValue based on an int value
-		switch (ivalue) {
-		case 1:
+		// A switch is an alternative to a series of if/else statements
+		//
+		// Each case statement is evaluated in the order coded one at a time until the case is true
+		//
+		//When a caae is true, the statement following the case AND ALL STATEMENTS UNTIL THE END OF THE SWITCH are executed
+		//		unless the case contains a return - ends the method or a break - breaks out of switch
+		//
+		//
+		// The following code written is a series of if/elses:
+		//
+		// if (ivalue== 1) {
+		//		return Card value.ONE;
+		//	}
+		// else if (ivalue ==2) {
+		//		return CardValue.TWO;
+		// }
+		// 
+		switch (ivalue) {	// if (ivalue...)
+		case 1:				// equals 1 - case indicates what value needs to be in the variable to be true
 			return CardValue.ONE;
 		case 2:
 			return CardValue.TWO;
@@ -158,7 +175,7 @@ public class PlayingCard {
 		StringBuffer stringCard = new StringBuffer();  // Define an object to hold String version of object
 
 		int firstColumnSize = 16;                      // position of first tab position of screen line 
-
+// Use the .append() rather than the + to concatenate with StringBuffer
 		stringCard.append("Value: " + value);          // Add literal to StringBuffer
 		stringCard.append(" (" + getIntValue() + ")"); // Add integer value of CardValue to StringBuffer
 		if (stringCard.length() < firstColumnSize) {   // If current StringBuffer size less than first tab position
@@ -190,7 +207,7 @@ public boolean equals(Object otherObject) {   // Compare two PlayingCards for eq
 	public int hashCode() {      // Generate hashCode for object if Java needs one e.g. for a HashMap
 	                             // HashCode is a unique value representing an instance of an object
 		int hashValue = 17;      // A prime number used in calculating the HashCode
-		int primeMultipler = 59; // A prime numbet used in calculating the HashCode
+		int primeMultipler = 59; // A prime number used in calculating the HashCode
 
 		hashValue = hashValue * primeMultipler + value.ordinal();  // Same values used in equals() 
 		hashValue = hashValue * primeMultipler + suit.ordinal();   //     should be used in the 
