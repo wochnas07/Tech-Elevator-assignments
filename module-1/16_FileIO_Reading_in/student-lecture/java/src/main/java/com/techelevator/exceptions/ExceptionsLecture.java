@@ -15,25 +15,31 @@ public class ExceptionsLecture {
 		 * code to handle it. */
 		System.out.println("The following cities: ");
 		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
-		try {
+		
+		try {	// If the code in this block throws an Exception, 
+				// 		let me see if I can handle it instead of the system terminating program
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
 			System.out.println(cities[2]);
-			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
+//			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
 			System.out.println("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
-		} catch(ArrayIndexOutOfBoundsException e) {
+		} catch(ArrayIndexOutOfBoundsException e) {	// If this Exception occurs in the preceding try block, I'll handle it
+													// An Exception object is automatically passed to the catch block
+													// An Exception contains information about the Exception you might want to know
+													// In this particular example - We are not using any info in the Exception object
+													// This catch block named the Exception object "e" - could be whatever you want
 			// Flow of control resumes here after the Exception is thrown
 			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
 		}
-		
+		// Execution resumes following the catch whether or not an Exception was thrown
 		System.out.println();
 		
-		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
+		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack - bubbling up */
 		try {
 			System.out.println("Hey ya'll, watch this!");
-			doSomethingDangerous();  // throws an ArrayIndexOutOfBoundsException
+			doSomethingDangerous();  // throws an ArrayIndexOutOfBoundsException - which will be caught by the catch block
 			System.out.println("See, I told you nothing would go wrong!");
-		} catch(ArrayIndexOutOfBoundsException e) {  
+		} catch(ArrayIndexOutOfBoundsException e) {  // will catch the Exception of this if anything in this block throws it
 			System.out.println("Call the Darwin Awards...");
 		}
 		
@@ -48,6 +54,7 @@ public class ExceptionsLecture {
 			int overtimeHours = hoursWorked - 40;
 			System.out.println("You worked "+overtimeHours+" hours of overtime.");
 		} catch(Exception e) { // If a NumberFormatException is thrown by Integer.valueOf(...) it will be caught here since NumberFormatException "is-a" Exception
+								// catch(Exception) will catch any Exception that occurs because all Exceptions are subclasses of Exception
 			System.out.println("You did it wrong...");
 		}
 		System.out.println();
@@ -59,7 +66,7 @@ public class ExceptionsLecture {
 		try {
 			double amountOwed = calculateHotelRoomCharges(nights, numberOfGuests);
 			System.out.println("Total owed for "+numberOfGuests+" guests for "+nights+" nights is $"+amountOwed);
-		} catch(IllegalArgumentException e) {
+		} catch(IllegalArgumentException e) {	// catch an Exception thrown by any code, including methods, in the try block
 			System.out.println(numberOfGuests+" guests for "+nights+" nights just doesn't make sense.");
 			System.out.println(e.getMessage());
 		}
@@ -73,7 +80,7 @@ public class ExceptionsLecture {
 		try {
 			double newBalance = withdraw(currentBalance, amountToWithdraw);
 			System.out.println("new balance is "+newBalance);
-		} catch(OverdraftException e) {
+		} catch(OverdraftException e) {	// catch a user defined Exception - not a standard system Exception
 			System.out.println("Unfortunately, you can't withdraw more money than you have in the bank...");
 			System.out.println("The requested amount would overdraw the account by "+e.getOverdraftAmount());
 		}
@@ -87,10 +94,10 @@ public class ExceptionsLecture {
 		 * The stacktrace contains a record of where the Exception was thrown and all of the 
 		 * method calls that lead up to the Exception being thrown. */
 		try {
-			doSomethingDangerous(); // throws an ArrayIndexOutOfBoundsException
+			doSomethingDangerous(); // throws an ArrayIndexOutOfBoundsException which caught in this try's catch block
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("AN EXAMPLE OF A STACKTRACE:");
-			e.printStackTrace(); // will print the Exception stacktrace to the terminal
+			e.printStackTrace(); // will print the Exception stacktrace to the terminal using the Exception object
 		}
 		System.out.println();
 	}
@@ -103,10 +110,10 @@ public class ExceptionsLecture {
 		final double ROOM_RATE = 85;
 		
 		/* The throw statements below demonstrate how to throw a new Exception. */
-		if(nights < 1) {
-			throw new IllegalArgumentException("Minimum number of nights is 1");
-		} else if(numberOfGuests < 1) {
-			throw new IllegalArgumentException("Minimum number of guests is 1");
+		if(nights < 1) {		// if less than the minimum number of nights
+			throw new IllegalArgumentException("Minimum number of nights is 1");	// throw an exception
+		} else if(numberOfGuests < 1) {	// if less than the minimum number of guests
+			throw new IllegalArgumentException("Minimum number of guests is 1");	// throw an exception
 		}
 		
 		int numberOfExtraGuests = 0;
@@ -125,7 +132,7 @@ public class ExceptionsLecture {
 		double newBalance;
 		if(amountToWithdraw <= currentBalance) {
 			newBalance = currentBalance - amountToWithdraw;
-		} else {
+		} else {	// if the account is overdrawn - throw our customer OverDraft Exception with the appropriate parameters
 			throw new OverdraftException("The requested withdrawal amount is greater than the current balance", Math.abs(currentBalance - amountToWithdraw));
 		}
 		return newBalance;		
@@ -134,7 +141,9 @@ public class ExceptionsLecture {
 	private static void doSomethingDangerous() {
 		int[] numbers = new int[5];
 		for(int i = 0; i < 10; i++) {
-			numbers[i] = i;  // this line will throw an Exception once i reaches 5
+			numbers[i] = i;  	// this line will throw an Exception once i reaches 5
+								// Since this method does not have the code in a try block and therefore cannot catch the Exception
+								//		the Exception will bubble up to whatever called this method
 		}
 		System.out.println("Look Ma, no Exceptions!");  // This line will not execute because an Exception will be thrown inside the for loop
 	}
