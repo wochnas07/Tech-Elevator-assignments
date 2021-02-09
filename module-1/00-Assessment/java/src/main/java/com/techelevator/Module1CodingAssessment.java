@@ -5,8 +5,9 @@ import java.util.Scanner;
 // This is the application program for the assessment
 
 public class Module1CodingAssessment {
-
+public boolean isValid;
 	public static void main(String[] args) {
+		
 		
 		System.out.println("Module 1 Coding Assessment\n");
 		

@@ -5,10 +5,22 @@
 --   The value immediately after the problem statement is the expected number of rows that should be returned by the query.
 
 -- 1. The name and population of all cities in Ontario, Canada (27 rows)
+select name, population 
+from city
+where district = 'Ontario'
+;
 
 -- 2. The name and population of all cities in Montana (1 row)
+select name, population
+from city
+where district = 'Montana'
+;
 
 -- 3. The name, form of government, and head of state of all countries in Europe (46 rows)
+select name, governmentform, headofstate
+from country
+where continent = 'Europe'
+;
 
 -- 4. The name, population, surface area, and average life expectancy of all countries in Asia (51 rows)
 
@@ -31,7 +43,11 @@
 -- 13. The name of all cities in the USA with a population between 1 million and 2 million people (6 rows) 
 
 -- 14. The name and region of all countries in North or South America except for countries in the Caribbean (27 rows)
-
+SELECT name, region
+FROM country
+WHERE continent in('North America', 'South Americ')
+AND region != 'Caribbean'
+;
 -- 15. The name, population, and GNP of all countries with a GNP greater than $1 trillion dollars and a population of less than 100 million people (4 rows)
 
 -- 16. The name and population of all cities in Texas that have a population of greater than 1 million people (3 rows)
@@ -43,7 +59,11 @@
 -- 19. The name of all countries on the continent of Oceania for which an average life expectancy has not been provided (i.e. equal to null) (8 rows)
 
 -- 20. The name, continent, GNP, and average life expectancy of all countries that have an average life expectancy of at least 70 years and a GNP between $1 million and $100 million dollars (3 rows)
-
+SELECT  name, continent, gnp, lifeexpectancy
+FROM    country
+WHERE   lifeexpectancy >= 70
+AND     gnp BETWEEN 1 and 100
+;
 -- 21. The per capita GNP (i.e. GNP divided by population) in US Dollars of all countries in Europe (46 rows)
 
 -- 22. The number of years since independence for all countries that have a year of independence (192 rows)
