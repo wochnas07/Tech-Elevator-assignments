@@ -7,16 +7,16 @@
 --    have matches in the film table;
 
 Begin transaction;
-insert into actor (first_name, last_name) values('Vinny', 'Ricky');
-insert into actor (first_name, last_name) values('Billy', 'Shanygne');
-insert into actor (first_name, last_name) values('Jake', 'David');
-insert into actor (first_name, last_name) values('Dan', 'Michael');
-insert into actor (first_name, last_name) values('Chris', 'Jason');
-insert into actor (first_name, last_name) values('Gabe', 'Michael');
-insert into actor (first_name, last_name) values('Seth', 'Kyle');
-insert into actor (first_name, last_name) values('Kurt', 'George');
-insert into actor (first_name, last_name) values('Rez', 'Spencer');
-insert into actor (first_name, last_name) values('Frank', 'Patrick');
+insert into actor (first_name, last_name) values('Anne', 'Joel');
+insert into actor (first_name, last_name) values('Daniel', 'Louis');
+insert into actor (first_name, last_name) values('Brianna', 'Hema');
+insert into actor (first_name, last_name) values('Aidan', 'Patrick');
+insert into actor (first_name, last_name) values('David', 'Connor');
+insert into actor (first_name, last_name) values('Sam', 'Michael');
+insert into actor (first_name, last_name) values('Luke', 'Sammi');
+insert into actor (first_name, last_name) values('Jeff', 'Eric');
+insert into actor (first_name, last_name) values('D. Avery', 'Danny');
+insert into actor (first_name, last_name) values('Jason', 'Frank');
 
 --
 --  2a. Problem solved with sub-query
