@@ -60,8 +60,8 @@ public class SQLInjectExample {
 // Define  String containing the SQL statement - concatenating user entered values
 		String getLogin =  "SELECT true "                        +
 				       	     "FROM user_logins "                 +
-					        "WHERE userid   = '"+inUserid  +"' " +
-					          "AND password = '"+inPassword+"' " ;
+					        "WHERE userid   = '"+inUserid  +"' " +	// concatenate user input into the SQL statement
+					          "AND password = '"+inPassword+"' " ;	// concatenate user input into the SQL statement
 
 // Display the SQL statement with concatenated user entered values
 		System.out.println("\n"+getLogin+"\n");

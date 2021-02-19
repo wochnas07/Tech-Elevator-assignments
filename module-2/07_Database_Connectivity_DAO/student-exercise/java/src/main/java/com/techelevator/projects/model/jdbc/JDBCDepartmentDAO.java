@@ -37,14 +37,14 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 	public List<Department> searchDepartmentsByName(String nameSearch) {
 		ArrayList<Department> listOfDepartments = new ArrayList<Department>();
 		
-		String searchDepartmentNameSQL = 	"Select department_id from department where name = ?";
-		SqlRowSet theDepartment = jdbcTemplate.queryForRowSet(searchDepartmentNameSQL, nameSearch);
-		if (theDepartment.next()) {
+		String searchDepartmentNameSQL = 	"Select * from department where upper(name) like upper('%" + nameSearch + "%') order by name";
+		SqlRowSet theDepartment = jdbcTemplate.queryForRowSet(searchDepartmentNameSQL);
+		while (theDepartment.next()) {
 			Department aDepartment = new Department();
 			aDepartment = MapRowToDepartment(theDepartment);
 			listOfDepartments.add(aDepartment);
 		}
-		return new ArrayList<>();
+		return listOfDepartments;
 	}
 
 	@Override
@@ -52,18 +52,28 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 		String updateDepartment = 	"UPDATE department " +
 									"Set name = ? " +
 									"Where department_id = ?";
-		jdbcTemplate.update(updateDepartment, updatedDepartment.getDepartment_name(), updatedDepartment.getDepartment_id());
+		jdbcTemplate.update(updateDepartment, updatedDepartment.getName(), updatedDepartment.getDepartment_id());
 		
 	}
 
 	@Override
 	public Department createDepartment(Department newDepartment) {
-		String sqlInsertDepartment =	"INSERT INTO department(department_id, name) " +
-										"VALUES(?, ?)";
-//		newDepartment.setDepartment_id(getNextDepartmentID());  					FIX LATER!!!!!!
-		jdbcTemplate.update(sqlInsertDepartment, newDepartment.getDepartment_id(),
-								newDepartment.getDepartment_name());
-		return null;
+	
+		jdbcTemplate.update 			("INSERT INTO department(name) " +
+										"VALUES('" + newDepartment + "')");
+		
+		String retrieveNewDepartmentInfo = ("SELECT department_id, name FROM department WHERE name = '" + newDepartment + "'");
+		
+		SqlRowSet anotherNewDepartments = jdbcTemplate.queryForRowSet(retrieveNewDepartmentInfo);
+		
+		Department reallyNewDepartment;
+		reallyNewDepartment = new Department();
+		
+		while(anotherNewDepartments.next()) {
+			reallyNewDepartment.setDepartment_id(anotherNewDepartments.getLong("department_id"));
+			reallyNewDepartment.setName(anotherNewDepartments.getString("name"));
+		}
+		return reallyNewDepartment;
 	}
 
 	@Override
@@ -81,7 +91,7 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 		Department theDepartment;
 		theDepartment = new Department();
 		theDepartment.setDepartment_id(results.getLong("department_id"));
-		theDepartment.setDepartment_name(results.getString("name"));
+		theDepartment.setName(results.getString("name"));
 		return theDepartment;
 	}
 	

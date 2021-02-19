@@ -11,11 +11,11 @@ import org.junit.runners.MethodSorters;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
-import com.techelevator.projects.model.jdbc.JDBCEmployeeDAO;
+import com.techelevator.projects.model.jdbc.JDBCProjectDAO;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-public class TestJDBCEmployeeDAO {
+public class TestJDBCProjectDAO {
 
 	/************************************************************************************************************
 	 * Set up for the data base access
@@ -25,7 +25,7 @@ public class TestJDBCEmployeeDAO {
 			private static SingleConnectionDataSource dataSource;
 			
 			// Define a reference to the JDBC/DAO we want to test
-			private JDBCEmployeeDAO employeeDAO;
+			private JDBCProjectDAO projDAO;
 		
 			// Before any tests are run, this method initializes the datasource for testing
 			@BeforeClass
@@ -53,7 +53,7 @@ public class TestJDBCEmployeeDAO {
 				JdbcTemplate theDataBase = new JdbcTemplate(dataSource);
 				
 				// Instantiate an object containing the methods we want to test and assign it to the reference above
-				employeeDAO = new JDBCEmployeeDAO(dataSource);
+				projDAO = new JDBCProjectDAO(dataSource);
 			}
 			
 			@After

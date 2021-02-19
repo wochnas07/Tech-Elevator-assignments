@@ -23,6 +23,8 @@ public class Employee {
 		this.gender 		= gender;
 		this.hire_date 		= hire_date;
 	}
+	public Employee() {
+	}
 
 	public long getEmployee_id() {
 		return employee_id;
@@ -67,8 +69,8 @@ public class Employee {
 		this.hire_date = hire_date;
 	}
 	
-	public String toString(Employee Table) {
-		return last_name + first_name;
+	public String toString() {
+		return getLast_name() + ", " + getFirst_name();
 	}
 	
 	

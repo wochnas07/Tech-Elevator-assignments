@@ -22,15 +22,16 @@ public class JDBCProjectDAO implements ProjectDAO {
 	@Override
 	public List<Project> getAllActiveProjects() {
 		ArrayList<Project> listOfProjects = new ArrayList<>();
-		String getAllProjects =	"SELECT project_id, project_name, from_date, to_date " +
-								"FROM project ";
+		String getAllProjects =	"SELECT project_id, name, from_date, to_date " +
+								"FROM project " +
+								"WHERE to_date IS NULL";
 		
 		SqlRowSet allProjects = jdbcTemplate.queryForRowSet(getAllProjects);
 		while(allProjects.next()) {
 			Project aProject = mapRowToProject(allProjects);
 			listOfProjects.add(aProject);
-		}
-		return new lisOfProjects;
+			}
+		return listOfProjects;
 	}
 
 	@Override
@@ -54,13 +55,13 @@ public class JDBCProjectDAO implements ProjectDAO {
 		Project theProject;
 		theProject = new Project();
 		theProject.setProject_id(results.getLong("project_id"));
-		theProject.setProject_name(results.getString("project_name"));
+		theProject.setName(results.getString("name"));
 		
 		if(results.getDate("from_date") != null) {
-			theProject.setFrom_date(results.getDate("from_date").toLocalDate());
+			theProject.setFrom_date(results.getString("from_date"));
 		} 
 		if(results.getDate("to_date") != null) {
-			theProject.setTo_date(results.getDate("to_date").toLocalDate());
+			theProject.setTo_date(results.getString("to_date"));
 		}
 		return theProject;
 			
