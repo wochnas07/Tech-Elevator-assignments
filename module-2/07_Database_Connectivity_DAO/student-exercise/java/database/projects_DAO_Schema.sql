@@ -6,6 +6,7 @@ drop sequence if exists seq_project_id   cascade;
 drop table    if exists project          cascade;
 drop table    if exists project_employee cascade;
 
+
 CREATE SEQUENCE seq_employee_id;  -- Create sequence object to generate unique employee ids instead of having postgres do it
 
 CREATE TABLE employee (

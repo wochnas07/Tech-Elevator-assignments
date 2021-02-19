@@ -153,9 +153,9 @@ public class ProjectsCLI {
 		printHeading("Add New Department");
 		String newDepartmentName = getUserInput("Enter new Department name");
 		Department newDepartment = new Department();
-//		newDepartment.setName(newDepartmentName);  // If your setter is not called "setName()", change this to what yours is called
+		newDepartment.setDepartment_name(newDepartmentName);  // If your setter is not called "setName()", change this to what yours is called
 		newDepartment = departmentDAO.createDepartment(newDepartment);     // Use the DAO object to run DAO method
-//		System.out.println("\n*** "+newDepartment.getName()+" created ***");  // If your getter are not called "getName()", change this to what yours is called
+		System.out.println("\n*** "+newDepartment.getDepartment_name()+" created ***");  // If your getter are not called "getName()", change this to what yours is called
 	}
 	
 	private void handleUpdateDepartmentName() {
@@ -165,7 +165,7 @@ public class ProjectsCLI {
 			System.out.println("\n*** Choose a Department ***");
 			Department selectedDepartment = (Department)menu.getChoiceFromOptions(allDepartments.toArray());
 			String newDepartmentName = getUserInput("Enter new Department name");
-//			selectedDepartment.setName(newDepartmentName);     // If your setter is not called "setName()", change this to what yours is called
+			selectedDepartment.setDepartment_name(newDepartmentName);     // If your setter is not called "setName()", change this to what yours is called
 			departmentDAO.saveDepartment(selectedDepartment);  // Use the DAO object to run DAO method
 		} else {
 			System.out.println("\n*** No results ***");
@@ -191,8 +191,8 @@ public class ProjectsCLI {
 		if(allDepartments.size() > 0) {
 			System.out.println("\n*** Choose a Department ***");
 			Department selectedDepartment = (Department)menu.getChoiceFromOptions(allDepartments.toArray());
-//			List<Employee> departmentEmployees = employeeDAO.getEmployeesByDepartmentId(selectedDepartment.getId());  // If your getter is not called "getId()", change this to what yours is called
-//			listEmployees(departmentEmployees);
+			List<Employee> departmentEmployees = employeeDAO.getEmployeesByDepartmentId(selectedDepartment.getDepartment_id());  // If your getter is not called "getId()", change this to what yours is called
+			listEmployees(departmentEmployees);
 		} else {
 			System.out.println("\n*** No results ***");
 		}
@@ -202,7 +202,7 @@ public class ProjectsCLI {
 		System.out.println();
 		if(departments.size() > 0) {
 			for(Department dept : departments) {
-//				System.out.println(dept.getName()); // If your getter is not called "getName()", change this to what yours is called
+				System.out.println(dept.getDepartment_name()); // If your getter is not called "getName()", change this to what yours is called
 			}
 		} else {
 			System.out.println("\n*** No results ***");
@@ -247,7 +247,7 @@ public class ProjectsCLI {
 		System.out.println();
 		if(employees.size() > 0) {
 			for(Employee emp : employees) {
-//				System.out.println(emp.getLastName() + ", " + emp.getFirstName()); // If your getters are not called "getLastName()" and "getFirstName(), change this to what yours is called
+				System.out.println(emp.getLast_name() + ", " + emp.getFirst_name()); // If your getters are not called "getLastName()" and "getFirstName(), change this to what yours is called
 			}
 		} else {
 			System.out.println("\n*** No results ***");
@@ -265,7 +265,7 @@ public class ProjectsCLI {
 		List<Department> allDepartments = departmentDAO.getAllDepartments();  // Use the DAO object to run DAO method
 		Department selectedDepartment = (Department)menu.getChoiceFromOptions(allDepartments.toArray());
 		
-//		employeeDAO.changeEmployeeDepartment(selectedEmployee.getId(), selectedDepartment.getId());  // If your getters are not called "getId()", change this to what yours is called
+		employeeDAO.changeEmployeeDepartment(selectedEmployee.getEmployee_id(), selectedDepartment.getDepartment_id());  // If your getters are not called "getId()", change this to what yours is called
 	}
 
 	private void handleProjects() {
