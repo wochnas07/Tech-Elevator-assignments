@@ -1,7 +1,7 @@
 --
 -- The SQL Injection Sample program expects these table to be in a database called "users"
 --
---   createdb -U postgres users
+--   createdb -U postgres userlogin
 --
 -- if you run this in another database be sure to change the SQL Injection Sample
 -- program datasource to the right database
