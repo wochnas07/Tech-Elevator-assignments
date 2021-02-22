@@ -29,7 +29,7 @@ public class AppTest {
         	// Arrange
             when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL), eq(Auction[].class)))
             	.thenReturn(expectedAuctions);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction[] actualAuctions = auctionService.listAllAuctions();
@@ -45,7 +45,7 @@ public class AppTest {
         	// Arrange
             when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL), eq(Auction[].class)))
             	.thenReturn(new Auction[0]);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction[] actualAuctions = auctionService.listAllAuctions();
@@ -61,7 +61,7 @@ public class AppTest {
         	// Arrange
         	when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL + "/1"), eq(Auction.class)))
         		.thenReturn(expectedAuction);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction actualAuction = auctionService.listDetailsForAuction(1);
@@ -77,7 +77,7 @@ public class AppTest {
         	// Arrange
         	when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL + "?title_like=Zero"), eq(Auction[].class)))
         		.thenReturn(expectedAuctions);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction[] actualAuctions = auctionService.findAuctionsSearchTitle("Zero");
@@ -93,7 +93,7 @@ public class AppTest {
         	// Arrange
         	when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL + "?title_like=NoSuchTitle"), eq(Auction[].class)))
         		.thenReturn(new Auction[0]);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction[] actualAuctions = auctionService.findAuctionsSearchTitle("NoSuchTitle");
@@ -109,7 +109,7 @@ public class AppTest {
         	// Arrange
         	when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL + "?currentBid_lte=23.25"), eq(Auction[].class)))
         		.thenReturn(expectedAuctions);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction[] actualAuctions = auctionService.findAuctionsSearchPrice(23.25);
@@ -125,7 +125,7 @@ public class AppTest {
         	// Arrange
         	when(mockRestTemplate.getForObject(eq(AuctionService.BASE_URL + "?currentBid_lte=0.0"), eq(Auction[].class)))
         		.thenReturn(new Auction[0]);
-            auctionService.restTemplate = mockRestTemplate;
+            auctionService.callAPI = mockRestTemplate;
 
             // Act
             Auction[] actualAuctions = auctionService.findAuctionsSearchPrice(0.0);
