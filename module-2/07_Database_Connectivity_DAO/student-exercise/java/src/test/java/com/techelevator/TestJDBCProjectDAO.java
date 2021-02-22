@@ -1,16 +1,23 @@
 package com.techelevator;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
+import com.techelevator.projects.model.Department;
+import com.techelevator.projects.model.Project;
 import com.techelevator.projects.model.jdbc.JDBCProjectDAO;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -31,7 +38,7 @@ public class TestJDBCProjectDAO {
 			@BeforeClass
 			public static void setupDataSource() {
 				dataSource = new SingleConnectionDataSource();
-				dataSource.setUrl("jdbc:postgressql://localhost:5432/world");
+				dataSource.setUrl("jdbc:postgresql://localhost:5432/projectsDAO");
 				dataSource.setUsername("postgres");
 				dataSource.setPassword("postgres1");
 				dataSource.setAutoCommit(false);
@@ -65,4 +72,34 @@ public class TestJDBCProjectDAO {
 	* Now that all the setup is done, we can start writing test for the methods in the JDBC/DAO
 	*************************************************************************************************************/
 
+			@Test
+			public void testGetAllActiveProjects() {
+			// Arrange
+				List<Project> results = projDAO.getAllActiveProjects();
+				assertNotNull(results);
+				assertEquals(projDAO.getAllActiveProjects().size(), results.size());	
+			}
+
+
+			@Test
+			public void testRemoveEmployeeFromProject() {
+			}
+
+
+			@Test
+			public void testAddEmployeeToProject() {
+			}
+
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 }
