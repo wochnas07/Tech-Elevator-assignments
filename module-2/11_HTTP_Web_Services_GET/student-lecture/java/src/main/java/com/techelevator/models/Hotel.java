@@ -1,5 +1,13 @@
 package com.techelevator.models;
 
+// POJO to hold the data coming back from the API
+
+// A POJO has: 	instance variables with names that match the JSON attribute names 
+//								so automatic object creation can be done by JSON deserialization
+//				a default constructor (sometimes optional)
+//				standard getter/setters
+//				a toString() method
+
 public class Hotel {
 
     private int id;

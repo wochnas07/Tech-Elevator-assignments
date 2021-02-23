@@ -29,8 +29,13 @@ public class LocationService {
     }
 
     public Location add(String CSV) {
-    	// api code here
-	    return null;
+    	Location location = makeLocation(CSV);
+    	if(location == null ) {
+    		return null;
+    	}
+    	HttpEntity entity = makeEntity(location);
+    	location = restTemplate.postForObject(BASE_URL, entity, Location.class);
+	    return location;
     }
 
     public void delete(int id) {
