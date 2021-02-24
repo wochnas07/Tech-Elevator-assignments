@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.techelevator</groupId>
-    <artifactId>m02d11-serverside-apis-part1-exercise</artifactId>
+    <artifactId>13-serverside-apis-part1-exercise</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
