@@ -13,14 +13,14 @@ import com.techelevator.reservations.exception.ReservationNotFoundException;
 import com.techelevator.reservations.models.Hotel;
 import com.techelevator.reservations.models.Reservation;
 
-@Component
+@Component	// Tells Spring MVC this is candidate for dependency injection
 public class MemoryReservationDAO implements ReservationDAO {
 
     private List<Reservation> reservations = new ArrayList<>();
-    private HotelDAO hotelDAO;
+    private HotelDAO hotelDAO;	// A reference to the HotelDAO - to use the HotelDAO methods
 
-    public MemoryReservationDAO(HotelDAO hotelDAO) {
-        this.hotelDAO = hotelDAO;
+    public MemoryReservationDAO(HotelDAO hotelDAO) {	// ctor recieves the HotelDAO object as a parameter
+        this.hotelDAO = hotelDAO;						// Assign the HotelDAO object it recieves to the HotelDAO reference
         initializeReservationData();
     }
 
