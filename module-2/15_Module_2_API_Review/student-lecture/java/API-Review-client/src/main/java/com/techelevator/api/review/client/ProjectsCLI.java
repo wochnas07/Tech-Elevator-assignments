@@ -75,7 +75,7 @@ public class ProjectsCLI {
 		this.menu = new Menu(System.in, System.out);
 		// postgres is a Data Base Mangager which contains many databases which contains many tables
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/projects");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/apireview");	// this has the name of the database to access
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres1");
 		
