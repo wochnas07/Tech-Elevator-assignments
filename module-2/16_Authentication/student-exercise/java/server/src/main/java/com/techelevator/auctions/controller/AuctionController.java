@@ -12,7 +12,9 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
-@RestController
+@RestController   
+@PreAuthorize("isAuthenticated()")
+
 @RequestMapping("/auctions")
 public class AuctionController {
 
@@ -22,6 +24,7 @@ public class AuctionController {
         this.dao = new MemoryAuctionDAO();
     }
 
+    @PreAuthorize("permitAll()")
     @RequestMapping( path = "", method = RequestMethod.GET)
     public List<Auction> list(@RequestParam(defaultValue = "") String title_like, @RequestParam(defaultValue = "0") double currentBid_lte) {
 

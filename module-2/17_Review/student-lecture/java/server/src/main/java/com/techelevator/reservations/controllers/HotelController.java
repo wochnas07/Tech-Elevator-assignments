@@ -119,6 +119,18 @@ public class HotelController {
      * @param id
      * @throws ReservationNotFoundException
      */
+    // Restrict access to the delete process to those with the role of "ADMIN"
+    //
+    // Roles are used to allow groups of users authorization to perform certain tasks
+    //
+    // Use @PreAuthorize Spring Expression Language annotation to define which role(s) have access
+    //
+    // hasRole('ADMIN') - tells Spring to check and be sure the user sending the request has the role indicated
+    //						the user name and role are encoded in the JWT
+    //
+    // hasAnyRole('ADMIN', 'CREATOR', 'JASON',) - allows any of the listed roles access to the method
+    //
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int id) throws ReservationNotFoundException {
