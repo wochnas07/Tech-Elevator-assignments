@@ -132,8 +132,13 @@ public class HotelService {
   public Reservation[] listReservationsByHotel(int hotelId) throws HotelServiceException {
     Reservation[] reservations = null;
     try {
-      reservations = restTemplate.exchange(BASE_URL + "hotels/" + hotelId + "/reservations", HttpMethod.GET,
-          makeAuthEntity(), Reservation[].class).getBody();
+    // Note the use of the exchange() restTemplate method instead of getForObject() as we have previously used
+    // 	the exchange() method is used when we need to send authentication information (JWT) along with the request
+    // .exchange(API_URL, request-type, authorization-header, method-to-retrieve-the-data)
+      reservations = restTemplate.exchange(BASE_URL + "hotels/" + hotelId + "/reservations"	// API URL
+    		  								, HttpMethod.GET					// type of http request
+    		  								, makeAuthEntity()					// authorization header (use helper method)
+          									, Reservation[].class).getBody();	// return type with a method to retrieve data
     } catch (RestClientResponseException ex) {
       throw new HotelServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
     }
@@ -208,9 +213,10 @@ public class HotelService {
    * @return {HttpEntity}
    */
   private HttpEntity makeAuthEntity() {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setBearerAuth(AUTH_TOKEN);
-    HttpEntity entity = new HttpEntity<>(headers);
+    HttpHeaders headers = new HttpHeaders();		// instantiate a header object for request
+    headers.setBearerAuth(AUTH_TOKEN);				// Set the "Bearer" attribute in the header for JWT
+    												//		The "Bearer" attribute in a request header holds JWT
+    HttpEntity entity = new HttpEntity<>(headers);	// Create a properly formatted request by instantiating an entity
     return entity;
   }
 

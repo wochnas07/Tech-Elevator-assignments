@@ -48,10 +48,14 @@ public class App {
                     Reservation[] reservations = hotelService.listReservations();
                     int reservationId = consoleService.promptForReservation(reservations, "Delete Reservation");
                     hotelService.deleteReservation(reservationId);
-                } else if (menuSelection == 6) {
-                    String credentials = consoleService.promptForLogin();
-                    if( credentials.split(",").length == 2 ) {
-                        ResponseEntity<Map> response = authenticationService.login(credentials);
+                } else if (menuSelection == 6) {							// LOGIN OPTION
+                    String credentials = consoleService.promptForLogin();	// 	use the ConsoleService to get user and password
+                    if( credentials.split(",").length == 2 ) {				//	did the ConsoleService return two values separated by a comma?
+                        // call the login() method of the authenticationService with the username,password" that was entered
+                    	//the authenicationService will send us back the HTTP response it got from the Authenication server
+                    	// ResponseEntity is a class for objects representing an HTTP response
+                    	//				typically a Map is used to hold the response data
+                    	ResponseEntity<Map> response = authenticationService.login(credentials);
                         if (response.hasBody()) {
                             String token = (String) response.getBody().get("token");
                             hotelService.AUTH_TOKEN = token;
