@@ -13,7 +13,9 @@ import java.util.Random;
 
 public class HotelService {
 
-  public static String AUTH_TOKEN = "";
+  public static String AUTH_TOKEN = "";   // Hold the JWT from the login process
+                                          // It's public so it can accessed outside this class
+                                          //      which OK since it's used outside this
   private final String INVALID_RESERVATION_MSG = "Invalid Reservation. Please enter the Hotel Id, Full Name, Checkin Date, Checkout Date and Guests";
   private final String BASE_URL;
   private final RestTemplate restTemplate = new RestTemplate();
@@ -132,13 +134,13 @@ public class HotelService {
   public Reservation[] listReservationsByHotel(int hotelId) throws HotelServiceException {
     Reservation[] reservations = null;
     try {
-    // Note the use of the exchange() restTemplate method instead of getForObject() as we have previously used
-    // 	the exchange() method is used when we need to send authentication information (JWT) along with the request
-    // .exchange(API_URL, request-type, authorization-header, method-to-retrieve-the-data)
-      reservations = restTemplate.exchange(BASE_URL + "hotels/" + hotelId + "/reservations"	// API URL
-    		  								, HttpMethod.GET					// type of http request
-    		  								, makeAuthEntity()					// authorization header (use helper method)
-          									, Reservation[].class).getBody();	// return type with a method to retrieve data
+     // Note the use of the exchange() restTemplate method instead of getForObject() as we have previously used
+     // the exchange() method is used when we need to send authenication information (JWT) along iwth the request
+     // .exchange(API-URL, request-type, authorization-header, method-to-retrieve-the data-from-the-body-of-response
+      reservations = restTemplate.exchange(BASE_URL + "hotels/" + hotelId + "/reservations"  // API URL
+    		                             , HttpMethod.GET                     // type of HTTP request
+                                         , makeAuthEntity()                   // authorization entity with header (use helper method)
+                                         , Reservation[].class).getBody();    // return type with a method to retrieve data from body of response
     } catch (RestClientResponseException ex) {
       throw new HotelServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
     }
@@ -213,10 +215,10 @@ public class HotelService {
    * @return {HttpEntity}
    */
   private HttpEntity makeAuthEntity() {
-    HttpHeaders headers = new HttpHeaders();		// instantiate a header object for request
-    headers.setBearerAuth(AUTH_TOKEN);				// Set the "Bearer" attribute in the header for JWT
-    												//		The "Bearer" attribute in a request header holds JWT
-    HttpEntity entity = new HttpEntity<>(headers);	// Create a properly formatted request by instantiating an entity
+    HttpHeaders headers = new HttpHeaders();        // instantiate a header object for request
+    headers.setBearerAuth(AUTH_TOKEN);              // Set the "Bearer" attribute in the head for header to JWT
+                                                    // The "Bearer" attribute in a request header hold JWT
+     HttpEntity entity = new HttpEntity<>(headers);  // Create a properly formatted request by instantiating an entity
     return entity;
   }
 
