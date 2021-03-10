@@ -4,11 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Trello Board</title>
+    <title>Lecture Code</title>
+    <!-- the CSS rules in this stylesheet will be applied first - because it appears first-->
     <link
       href="https://fonts.googleapis.com/css?family=Raleway"
       rel="stylesheet"
-    />        
+    />  
+    <!-- this stylesheet will be applied second and override any styling done in the first stylesheet -->     
+    <link href="style.css" rel="stylesheet" />  <!-- link the external stylesheet to this html--> 
   </head>
 
   <body>
@@ -18,29 +21,34 @@
       <p>Team Visible</p>
     </header>
 
+    <!-- id =""   attribute assigns a name to an element for styling-->
+    <!--          allows styling of a specific element rather than a tag or group of elements -->
+
+    <!-- class ""attribute identifies a group you want to style as a unit -->
+
     <main id="trello-board">
       <div class="trello-list">
         <h2>General</h2>
-        <ol class="cards">
+        <ol class="cards">      <!-- Apply any CSS rule for class="cards" to this element-->
           <li class="card">
             <div class="labels">
               <span class="label general"></span>
             </div>
             INSTRUCTIONS
           </li>
-          <li class="card">
+          <li class="card">    <!-- Apply any CSS rule for class="card" to this element-->
             <div class="labels">
               <span class="label pathway"></span>
             </div>
             PATHWAY
           </li>
-          <li class="card">
+          <li class="card">      <!-- Apply any CSS rule for class="card" to this element-->
             <div class="labels">
               <span class="label individual"></span>
             </div>
             INDIVIDUAL
           </li>
-          <li class="card">
+          <li class="card">      <!-- Apply any CSS rule for class="card" to this element-->
             <div class="labels">
               <span class="label pair"></span>
             </div>
@@ -50,7 +58,7 @@
         <a href="#">Add another card</a>
       </div>
 
-      <!-- <div class="trello-list">
+       <div class="trello-list">
         <h2>Module 1 Week 1</h2>
         <ol class="cards">
           <li class="card">
@@ -94,7 +102,7 @@
         <a href="#">Add another card</a>
       </div>
 
-      <div class="trello-list">
+       <div class="trello-list">
         <h2>Module 1 Week 2</h2>
         <ol class="cards">
           <li class="card pathway">
