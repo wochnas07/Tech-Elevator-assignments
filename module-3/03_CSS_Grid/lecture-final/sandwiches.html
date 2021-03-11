@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> <!-- Info for the browser -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bits & Bytes</title>
-    <link rel="stylesheet" href="style.css">  <!-- general styling for the page                                  -->
-    <link rel="stylesheet" href="grid.css">   <!-- grid styling for the page - override any styling in the first -->
+    <link rel="stylesheet" href="style.css">  <!-- Current styling without grid    -->
+    <link rel="stylesheet" href="grid-px.css">   <!-- if styling is duplicated - this one wins, because it's last-->
 </head>
 
-<body>     <!-- body is the content of the web page   -->
-    <div class="container"> <!-- the body is encapsulated in this div -->
-        <header> <!-- Display at the top of the page  -->
+<body> <!-- Primary content of the page -->
+    <div class="container"> <!-- This div contains all main content of the page -->
+        <header>
             <h1>Bits & Bytes</h1>
             <nav id="site-nav">
                 <ul>
@@ -23,7 +23,7 @@
             </nav>
         </header>
 
-        <nav id="menu-nav" class="sidebar"> <!-- contain navigation links to other parts of he page or app -->
+        <nav id="menu-nav" class="sidebar">
             <h3>Menu</h3>
             <ul>
                 <li><a href="#">Breakfast</a></li>
@@ -40,7 +40,7 @@
             </ul>
         </nav>
 
-        <main> <!-- Primary content of the page  -->
+        <main>
             <h2>Sandwiches</h2>
             <div class="food-item">
                 <h3>Full Stack Sandwich</h3>
@@ -60,7 +60,7 @@
             </div>
         </main>
 
-        <aside id="upcoming-events" class="sidebar">  <!-- Content placed on either side of the  page -->
+        <aside id="upcoming-events" class="sidebar">
             <h3>Events</h3>
             <ul>
                 <li><a href="#">Sunday Brunch</a></li>
@@ -69,8 +69,8 @@
             </ul>
         </aside>
 
-        <footer>  <!-- At the bottom of page  -->
-            &copy; Bits & Bytes  <!-- &copy is a meta-character represents copyright symbol -->
+        <footer>
+            &copy; Bits & Bytes
         </footer>
     </div>
 </body>
