@@ -27,20 +27,29 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
-
+function multiplyTogether(num1, num2) {
+  let result = num1 * num2;
+  return result;
+  // alternate solution: return num1 * num2;
+}
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
  * values to 0. However, it is impossible in JavaScript to prevent
  * someone from calling this function with data that is not a number.
  * Call this function multiplyNoUndefined
+ * 
+ * We can supply default values for parameters that are missing
+ * Simply coded parameterName=defaultValue
  *
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
-
-
- 
+function multiplyNoUndefined(firstParameter=0, secondParameter=0) {
+console.log(`1st Parameter: ${firstParameter}`)
+console.log(`2nd Parameter: ${secondParameter}`)
+return firstParameter * secondParameter;
+}
 /**
  * Functions can return earlier before the end of the function. This could be useful
  * in circumstances where you may not need to perform additional instructions or have to
@@ -67,7 +76,7 @@ function returnBeforeEnd(firstParameter, secondParameter) {
 /**
  * Scope is defined as where a variable is available to be used.
  *
- * If a variable is declare inside of a block, it will only exist in
+ * If a variable is declare with let inside of a block, it will only exist in
  * that block and any block underneath it. Once the block that the
  * variable was defined in ends, the variable disappears.
  */
@@ -75,11 +84,12 @@ function scopeTest() {
   // This variable will always be in scope in this function
   let inScopeInScopeTest = true;
 
-  {
+  { // ScopeToBlock variable is created here
     // this variable lives inside this block and doesn't
     // exist outside of the block
     let scopedToBlock = inScopeInScopeTest;
-  }
+  } // scopeToBlock variable is destroyed here - no longer available to anyone
+
 
   // scopedToBlock doesn't exist here so an error will be thrown
   if (inScopeInScopeTest && scopedToBlock) {
@@ -89,18 +99,40 @@ function scopeTest() {
 
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
+  // .join() takes the elements in an array and makes them a string
+  //                    with the separator between them
   return description + listOfQuirks.join(separator);
 }
 
 /**
  * Takes an array and, using the power of anonymous functions, generates
  * their sum.
+ * 
+ *    .reduce() - return an array reduced/converted to a single value using a function as an argument
+ *    .reduce() - goes through the array one element at a time (implied for-loop) passing the element 
+ *                to the function used as the argument
+ * 
+ *      syntax:   arrayName.reduce(anonymous-function(reducer, element-in-array))
+ * 
+ *                the anonymous-function takes two parameters: reducer and elem-in-array
+ * 
+ *                the reducer will hold the value from the previous call to the function
+ *                    (result from the prior execution of the anon-func)
  *
  * @param {number[]} numbersToSum numbers to add up
  * @returns {number} sum of all the numbers
  */
+
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  // the variable sum (reducer) will contain the sum of all the numbers in the array
+  //
+  // the anon-func will change the value in the sum (reducer) each time it is called
+  //
+  // the variable aNumber will be the current element in the array passed to the anon-func
+
+  return numbersToSum.reduce((sum, aNumber) =>  {
+                                                  return sum += aNumber;
+  });
 }
 
 /**
