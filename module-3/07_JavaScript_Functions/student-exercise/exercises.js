@@ -73,6 +73,11 @@ function addAll() {
     return sum.reduce((sum, number) => {
     return sum += number},0);
 }
+// ALTERNATE CODE:
+//return Array.from(arguments).reduce((sum, number) => {
+//    return sum + number;
+//    }, 0);
+
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
@@ -100,8 +105,12 @@ function makeHappy(array) {
  *
  * Use `map` and an anonymous function.
  */
-function getFullAddressesOfProperties() {
-    
+function getFullAddressesOfProperties(objects) {
+    let myMap = objects.map((object) => {
+                return object.streetNumber + ' ' + object.streetName + ' ' +
+                object.streetType + ' ' + object.city + ' ' + object.state + ' ' + object.zip;
+    })
+    return myMap;
 }
 
 
@@ -111,6 +120,10 @@ function getFullAddressesOfProperties() {
  * Using `forEach`, find the largest element in an array.
  * It must work for strings and numbers.
  */
+function findLargest(array) {
+        array.sort();
+        return array[array.length - 1];
+}
 
 /*
  * CHALLENGE
