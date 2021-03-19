@@ -1,5 +1,5 @@
 let allItemsIncomplete = true;
-const pageTitle = 'My Shopping List';
+
 const groceries = [
   { id: 1, name: 'Oatmeal', completed: false },
   { id: 2, name: 'Milk', completed: false },

@@ -2,8 +2,18 @@
 const pageTitle = "My Shopping List";
 
 // add groceries
-let groceries = ['Apples', 'Bananas', 'Vodka', 'Cheez-Its', 'Gogurt', 'Meatballs', 'Pizza Rolls', 'Taquitos', 'White Claws', 'Hot Sauce']
-
+let groceries = [
+{ id: 1, name: 'Apples', completed: false },
+{ id: 2, name: 'Bananas', completed: false },
+{ id: 3, name: 'Vodka', completed: false },
+{ id: 4, name: 'Cheez-Itz', completed: false },
+{ id: 5, name: 'Gogurt', completed: false },
+{ id: 6, name: 'Meatballs', completed: false },
+{ id: 7, name: 'Pizza Rolls', completed: false },
+{ id: 8, name: 'Taquitos', completed: false },
+{ id: 9, name: 'White Claws', completed: false },
+{ id: 10, name: 'Hot Sauce', completed: false }
+];
 
 /**
  * This function will get a reference to the title and set its text to the value
@@ -19,21 +29,47 @@ function setPageTitle() {
  * This function will loop over the array of groceries that was set above and add them to the DOM.
  */
 function displayGroceries() {
-  const theUl = document.getElementById('groceries');
-
-  groceries.forEach((theGroceries) => {
-
-    const newGrocery = document.createElement('li');
-
-    newGrocery.setAttribute('class', 'item')
-  })
+  const ul = document.querySelector('ul');
+  groceries.forEach((item) => {
+    const li = document.createElement('li');
+    li.innerText = item.name;
+    const checkCircle = document.createElement('i');
+    checkCircle.setAttribute('class', 'far fa-check-circle');
+    li.appendChild(checkCircle);
+    ul.appendChild(li);
+  });
 }
 
 /**
  * This function will be called when the button is clicked. You will need to get a reference
  * to every list item and add the class completed to each one
  */
-function markCompleted() {}
+function markCompleted() {
+  const allComplete = document.getElementsByTagName('#')
+  let allItemsIncomplete = true;
+  allComplete.addEventListener('click', () => 
+    {
+      if (allItemsIncomplete === true) {
+        singleRow.forEach((row) => {
+          row.classList.add('completed');
+          row.querySelector('i').classList.add('completed'); 
+          })
+        allItemsIncomplete = false;
+        allComplete.innerHTML = "Mark All Incomplete";
+      } else {
+        singleRow.forEach((row) => {
+          row.classList.remove('completed');          
+          row.querySelector('i').classList.remove('completed');
+      })         
+        allItemsIncomplete = true;          
+        allComplete.innerHTML = "Mark All Complete"; 
+    }        
+  })     
+}
+
+
+
+
 
 setPageTitle();
 
