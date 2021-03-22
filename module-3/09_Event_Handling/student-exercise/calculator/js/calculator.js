@@ -72,28 +72,59 @@ function clear() {
 }
 
 // add event listener for when the DOM is loaded
-document.addEventListener('LOADED_EVENT_GOES_HERE', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
-
+  display = document.getElementById('display');
+  
   // get a reference to all of the numbers
-  // loop over each of the numbers
-  // add a click event listener to each number to call the function clickNumber
+  const allNumbers = document.querySelectorAll('.number');
 
-  // get a reference to the decimal point button
+  // loop over each of the numbers
+  allNumbers.forEach((loopy) => {
+
+  // add a click event listener to each number to call the function clickNumber
+    loopy.addEventListener('click', clickNumber)})
+
+    // get a reference to the decimal point button
+    const theDecimal = document.querySelector('.decimal');
+
   // add a click event listener to call the function clickNumber
   // the decimal point is part of the number so append it
+    theDecimal.addEventListener('click', clickNumber);
 
-  // get a reference to the all clear button
+      // get a reference to the all clear button
+    const allClear = document.querySelector('.all-clear');
+
   // add a click event listener to call the function clear  
+    allClear.addEventListener('click', clear);
 
   // get a reference to all of the operators;
-  // loop over each of the operators
-  // add a click event listener to each operator to call the function clickOperator
+    const helloOperator = document.getElementsByClassName('operator');
+
+ // loop over each of the operators
+    Array.from(helloOperator).forEach((loopy) => {
+
+     // add a click event listener to each operator to call the function clickOperator   
+    loopy.addEventListener('click', clickOperator);
 
   // add click event listener for the equal sign
-  // should call the function performOperation
+    const theAnswer = document.querySelector('.equal-sign');
 
-});
+  // should call the function performOperation
+    theAnswer.addEventListener('click', performOperation);
+
+    })
+  });
+
+
+
+ 
+
+
+
+
+
+
 

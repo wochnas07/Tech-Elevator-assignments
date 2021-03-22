@@ -1,5 +1,4 @@
-let allItemsIncomplete = true;
-
+const pageTitle = 'My Shopping List';
 const groceries = [
   { id: 1, name: 'Oatmeal', completed: false },
   { id: 2, name: 'Milk', completed: false },
@@ -37,5 +36,44 @@ function displayGroceries() {
   });
 }
 
-setPageTitle();
-displayGroceries();
+document.addEventListener('DOMContentLoaded', () => {
+  setPageTitle();
+  displayGroceries();
+  const singleRow = document.querySelectorAll('li');
+  singleRow.forEach((row) => {
+      row.addEventListener('click', () =>
+          {
+            if (!row.classList.contains('completed')){
+              row.classList.add('completed');
+              row.querySelector('i').classList.add('completed');
+                                              }
+          });
+      row.addEventListener('dblclick', () => 
+          {
+            if(row.classList.contains('completed')){
+              row.classList.remove('completed');
+              row.querySelector('i').classList.remove('completed')
+            }
+          })
+    const allComplete = document.getElementById('toggleAll');
+    let allItemsIncomplete = true;
+    allComplete.addEventListener('click', () => 
+      {
+        if (allItemsIncomplete === true) {
+          singleRow.forEach((row) => {
+            row.classList.add('completed');
+            row.querySelector('i').classList.add('completed'); 
+            })
+          allItemsIncomplete = false;
+          allComplete.innerHTML = "Mark All Incomplete";
+        } else {
+          singleRow.forEach((row) => {
+            row.classList.remove('completed');          
+            row.querySelector('i').classList.remove('completed');
+        })         
+          allItemsIncomplete = true;          
+          allComplete.innerHTML = "Mark All Complete"; 
+      }        
+    })     
+  })
+})
