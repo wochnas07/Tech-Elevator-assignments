@@ -1,8 +1,74 @@
 <template>  <!-- Our html goes here -->
     <div class='main'>  <!-- Place our code in the main part of this page -->
        <h2>Product Reviews for {{ title }}</h2> <!-- Use a mustache {{variable}} to indicate you want data from the component placed here -->
-       <p class='description'>{{words}}</p> <!-- mustache expression - {{variable}} -->
+       <p class='description'>{{words}}</p> <!-- mustache expression - {{variable}}           -->
+
+       <div class="well-display">
+
+         <div class="well"> <!-- our avg star rating box                                        -->
+              <span class="amount"> {{ averageRating}} </span> <!-- span lets us style the middle of an element -->
+              Average Rating
+         </div>
+
+         <div class="well"> <!-- our 1 star rating box                                        -->
+              <span class="amount"> {{ numberOfOneStarReviews}} </span> <!-- span lets us style the middle of an element -->
+              1 Star Rating
+         </div>
+
+         <div class="well"> <!-- our 2 star rating box                                        -->
+              <span class="amount"> {{ numberOfTwoStarReviews}} </span> <!-- span lets us style the middle of an element -->
+              2 Star Rating
+         </div>
+
+         <div class="well"> <!-- our 3 star rating box                                        -->
+              <span class="amount"> {{ numberOfThreeStarReviews}} </span> <!-- span lets us style the middle of an element -->
+              3 Star Rating
+         </div>
+
+         <div class="well"> <!-- our 4 star rating box                                        -->
+              <span class="amount"> {{ numberOfFourStarReviews}} </span> <!-- span lets us style the middle of an element -->
+              4 Star Rating
+         </div>
+
+         <div class="well"> <!-- our 5 star rating box                                        -->
+              <span class="amount"> {{ numberOfFiveStarReviews}} </span> <!-- span lets us style the middle of an element -->
+              5 Star Rating
+         </div>
+
+       </div>
+       <!-- We want to go throigh the array of reviews in our data                            -->
+       <!--     and display the attributes for the review                                     -->
+       <!-- Use a v-for loop to go through the array                                          -->
+       <!-- syntax for a v-for: v-for="element-name in array-name v-bind='key-field'"-->
+       <!--     the 'key-field' is used by dby v-for to uniquely identify an instance on page -->
+       <!--     the 'key-field' does NOT have to be an existing attribute in the array        -->
+       <div class='review'
+            v-for="aReview in reviews" v-bind:key="aReview.id"
+       >    <!-- Hold the display of the product review data -->
+       <h4>{{aReview.reviewer}} </h4>   <!-- reviewer attribute from the array element        -->
+       <div class="rating">
+       <img 
+            src="../assets/star.png"
+            class="ratingStar"
+            v-for="n in aReview.rating" v-bind:key='n'
+       >
+       </div>
+
+       <h3> {{aReview.title}}</h3>      <!-- title attribute from the array element           -->
+       <p> {{aReview.review}} </p>      <!-- review attribute from the array element          -->
+
+       <!-- add a checkbox for Favorite - tied to the favorited attribute in the array element-->
+       <!-- v-model ties a piece of data in the component to an element in the html           -->
+       <!-- such that any change to data on the web page is reflected in the data of component-->
+    
+       <p> 
+          Favorite?
+          <input type="checkbox" v-model="aReview.favorited"/>
+
+       </p>
+       </div>
     </div>
+
 </template>
 
 <script> // Our JavaScript code goes here
@@ -52,7 +118,69 @@ export default {  // Expose data from this code to external processes (like Vue)
               }
             ]
         }   // end of return
-    }   // end of data()
+    },   // end of data() - comma indicates there is more in the export that just the data
+    // Add a computed section to the export to perform calculations to achieve value we need
+    computed: {
+
+      averageRating() {
+        let sum = this.reviews.reduce((totalRatings, aReview) => { 
+          return totalRatings + aReview.rating;   // Add the current element's rating to the sum
+        }, 0)
+        return sum/this.reviews.length;
+
+      },
+
+      numberOfOneStarReviews() {
+
+      return this.reviews.reduce((currentCount, anElement) => {
+                  if(anElement.rating == 1) {
+                    currentCount++
+                  }
+                  return currentCount
+                  }, 0)
+      },
+
+      numberOfTwoStarReviews() {
+
+      return this.reviews.reduce((currentCount, anElement) => {
+                  if(anElement.rating == 1) {
+                    currentCount++
+                  }
+                  return currentCount
+                  }, 0)
+      },
+
+      numberOfThreeStarReviews() {
+
+      return this.reviews.reduce((currentCount, anElement) => {
+                  if(anElement.rating == 1) {
+                    currentCount++
+                  }
+                  return currentCount
+                  }, 0)
+      },
+
+      numberOfFourStarReviews() {
+
+      return this.reviews.reduce((currentCount, anElement) => {
+                  if(anElement.rating == 1) {
+                    currentCount++
+                  }
+                  return currentCount
+                  }, 0)
+      },
+
+      numberOfFiveStarReviews() {
+
+      return this.reviews.reduce((currentCount, anElement) => {
+                  if(anElement.rating == 1) {
+                    currentCount++
+                  }
+                  return currentCount
+                  }, 0)
+      }
+
+    }
 }  // end of export
 </script>
 
