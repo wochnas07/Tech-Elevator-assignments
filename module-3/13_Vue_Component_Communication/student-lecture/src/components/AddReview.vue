@@ -49,7 +49,8 @@ export default {
   },
   methods: {
     addNewReview() {
-      this.resetForm();
+      this.$store.commit("ADD_REVIEW", newReview)  // Add the newReview to the reviews array in the data store
+      this.resetForm();   // Reset the form fields and remove from the DOM
     },
     resetForm() {
       this.showForm = false;

@@ -1,4 +1,5 @@
 <template>
+<!-- generate one div for each element in the filteredReviews array -->
   <div class="reviews">
     <review-display
       v-for="review in filteredReviews"
@@ -18,9 +19,15 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const reviewsFilter = -1;
-      const reviews = [];
+      // this value will be used to filter the reviews
+      const reviewsFilter = this.$store.state.filter
+      
+      //copy the reviews array from the data store into this component so we can use it
+      const reviews = this.$store.state.reviews
+      // .filter(0) - return an array of element where the anon-function returned true for the element it was sent
       return reviews.filter(review => {
+        // determine if the current element rating in the reviews array matches the reviewsFilter value
+        // return true if the reviewsFilter value is 0 or the rating in the element == reviewsFilter value
         return reviewsFilter === 0 ? true : reviewsFilter === review.rating;
       });
     }

@@ -14,9 +14,12 @@
     <p>{{ review.review }}</p>
     <p>
       Favorite?
+      <!-- connect the checkbox to the favorited attribute in the review we received - v-bind -->
+      <!-- add a changed event to the checkbox to run the onFavoritedChanged method when clicked -->
       <input
         type="checkbox"
         v-bind:checked="review.favorited"
+        v-on:change= "onFavoritedChange"
       />
     </p>
   </div>
@@ -25,9 +28,11 @@
 <script>
 export default {
   name: "review-display",
-  props: ["review"],
+  props: ["review"],        // review is coming from outside this component
   methods: {
-    onFavoritedChange() {
+    onFavoritedChange() {   // toggle the boolean called favorited in the data site
+      // call the mutation in the data store with the review whose favorited attribute to change
+      this.$store.commit("FLIP_FAVORITED", this.review)
 
     }
   }

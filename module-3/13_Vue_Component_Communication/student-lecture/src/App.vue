@@ -1,29 +1,30 @@
 <template>
   <div id="app" class="main">
-    <h1>Product Reviews for </h1>
-    <p class="description"></p>
+    <h1>Product Reviews for {{ $store.state.name }} </h1> <!-- go to the data store and get the name attribute from state -->
+    <p class="description">{{ $store.state.description }}</p>
     <div class="well-display">
-      <average-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
+      <average-summary />     <!-- use the AverageSummary.vue component -->
+      <star-summary rating="1" />        <!-- use the StarSummary.vue component    -->
+      <star-summary rating="2"/>        <!-- use the StarSummary.vue component    -->
+      <star-summary rating="3"/>        <!-- use the StarSummary.vue component    -->
+      <star-summary rating="4"/>        <!-- use the StarSummary.vue component    -->
+      <star-summary rating="5"/>        <!-- use the StarSummary.vue component    -->
     </div>
-    <add-review />
-    <review-list />
+    <add-review />            <!-- use the AddReview.vue component      -->
+    <review-list />           <!-- use the ReviewList.vue component     -->
   </div>
 </template>
 
 <script>
+// We need to import the file for each component we're using
 import AverageSummary from "./components/AverageSummary.vue";
-import StarSummary from "./components/StarSummary.vue";
-import AddReview from "./components/AddReview.vue";
-import ReviewList from "./components/ReviewList.vue";
+import StarSummary    from "./components/StarSummary.vue";
+import AddReview      from "./components/AddReview.vue";
+import ReviewList     from "./components/ReviewList.vue";
 
 export default {
   name: "app",
-  components: {
+  components: {               // We have to list the name of all the Vue components we use - code <kabob-case>
     AverageSummary,
     StarSummary,
     AddReview,

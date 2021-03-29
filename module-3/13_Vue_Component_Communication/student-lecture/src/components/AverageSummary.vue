@@ -9,13 +9,16 @@
 export default {
   name: "average-summary",
   methods: {
-    updateFilter() {
-
+    updateFilter() {    // This will set the filter value to 0 when average ratings is clicked
+        // We need to call the Vuex dara store mutation to set the filter value using .commit()
+        //     .commit(mutation-name, value)
+    this.$store.commit("UPDATE_FILTER",0)
     }
   },
   computed: {
     averageRating() {
-      const reviews = [];
+      // copy the reviews from the Vuex data store into this component so we can use them
+      const reviews = this.$store.state.reviews
       let sum = reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
       }, 0);
