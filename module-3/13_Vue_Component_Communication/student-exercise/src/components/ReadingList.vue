@@ -7,14 +7,15 @@
   </div>
 </template>
 <script>
-import BookCard from './BookCard.vue'
+
+import BookCard from "./BookCard.vue";
 export default {
-  components: { BookCard },
     name: 'reading-list',
-    
+    components: {
+      BookCard
+    }
 }
 </script>
-
 <style>
 .book-container {
     display:flex;

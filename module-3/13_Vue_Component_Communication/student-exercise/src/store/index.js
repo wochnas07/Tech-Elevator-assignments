@@ -4,7 +4,6 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-
   state: {
     books: [
       {
@@ -31,16 +30,17 @@ export default new Vuex.Store({
       read: false,
       isbn: "9783125971400"
       }
-     ]
+     ]  
   },
   mutations: {
     FLIP_READ_STATE(state, bookToChange) {
       bookToChange.read = ! bookToChange.read;
+    },
+    ADD_BOOK(state, book) {      // Add a review to our data array - receives the state and the new review
+      state.books.unshift(book); // Takes the new review passed and add it to the start of the array
     }
   },
   actions: {},
   modules: {},
-  strict: true,
-
-   
+  strict: true, 
 });
