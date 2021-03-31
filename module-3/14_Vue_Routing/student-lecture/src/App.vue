@@ -1,5 +1,5 @@
-<template>
-  <div></div>
+<template>          <!-- This is where you put the html code for your page -->
+  <router-view />   <!-- we want to use Vue router to manage the content of this page -->
 </template>
 
 <script>

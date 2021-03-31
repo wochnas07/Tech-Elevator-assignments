@@ -10,7 +10,20 @@
     <tbody>
       <tr v-for="product in $store.state.products" v-bind:key="product.id">
         <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
+        <!-- We need to add a link to a new page when the name is clicked       -->
+        <!--      to do that, we need to add a router link to the description   -->
+        <!--      <router-link> defines a link for vue router to handle         -->
+        <!--            v-bind:to="" identifies the router path you want to use -->
+        <!--                      "name:'router-path-name'" in the to=""        -->
+        <!--      if the router path requires a path varibale, use params attribute -->
+        <!--            params: { variable-name: value} -->
+        <td>
+          <!-- set up a link to use the prodcut-detail router path with the variable id -->
+          <!--                                assigned the value of the product id -->
+          <router-link v-bind:to="{name:'product-detail', params:{id: product.id}}">
+          {{ product.name }}
+          </router-link>
+        </td>
         <td>{{ product.reviews.length }}</td>
       </tr>
     </tbody>

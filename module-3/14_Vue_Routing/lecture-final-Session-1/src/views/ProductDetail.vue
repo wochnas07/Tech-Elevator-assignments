@@ -2,6 +2,8 @@
     <div id='app' class='main'> 
         <h1> {{product.name}}</h1>
         <p class='description'>{{product.description}}</p>
+        <router-link v-bind:to="{name: 'products'}">Back to Products</router-link>
+        <router-link v-bind:to="{name: 'add-review', params: {id:product.id}}">Add a Review</router-link>
         <div class='well-display'> <!-- display teh summary of ratings -->
             <average-summary />
             <star-summary rating="1" />
