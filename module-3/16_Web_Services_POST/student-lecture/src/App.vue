@@ -1,6 +1,7 @@
+<!-- This is the Vue home page -->
 <template>
   <div class="container">
-    <boards-list />
+    <boards-list />   <!-- Vue componenet displayed on the home page -->
     <router-view :key="$route.fullPath" class="routerView" />
   </div>
 </template>

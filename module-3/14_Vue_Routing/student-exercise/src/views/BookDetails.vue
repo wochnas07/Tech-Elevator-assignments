@@ -3,15 +3,15 @@
         <h2> {{ foundBook.title }} </h2>
         <h2> {{ foundBook.author }} </h2>
         <img v-if="foundBook.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + foundBook.isbn + '-M.jpg'" />
-        <p> I have read this book </p>
-
+        <h3 v-if="foundBook.read"> I have read this book.</h3>
+        <h3 v-if="!foundBook.read"> I have not read this book.</h3>
     </div>
 </template>
 
 <script>
 
 export default {
-    name: "isbn-search",
+    name: "book-details",
     computed: {
         foundBook() {
             return this.$store.state.books.find((book) => {

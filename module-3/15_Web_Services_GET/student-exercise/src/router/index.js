@@ -15,6 +15,11 @@ const routes = [
     path: '/:id',
     name: 'Messages',
     component: Messages
+  },
+  {
+    path: '/topics',
+    name: 'Topics',
+    component: Home
   }
 ];
 
